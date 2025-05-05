@@ -4,7 +4,7 @@ const App = () => {
 
   return (
     <div className=' bg-black text-2xl min-h-screen flex items-center justify-center text-white '>
-      <h1 className=' uppercase'>this is influencer web</h1>
+      <h1 className=' uppercase'>this is influencer webbb</h1>
     </div>
   )
 }
