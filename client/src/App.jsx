@@ -1,14 +1,32 @@
+import { Routes, Route } from 'react-router-dom'
+import React from 'react'
 
+// Layout
+import MainLayout from './layouts/MainLayout.jsx'
 
-const App = () => {
+// Pages
+import Home from './pages/Home.jsx'
+import About from './pages/About.jsx'
+import Contact from './pages/Contact.jsx'
+import CreatorDetail from './pages/CreatorDetail.jsx'
+import Auth from './pages/Auth.jsx'
+import Gallery from './pages/Gallery.jsx'
+import NotFound from './pages/NotFound.jsx'
 
+function App() {
   return (
-    <div className=' bg-black text-2xl min-h-screen flex items-center justify-center text-white '>
-
-
-      <h1 className=' uppercase'>this is creatorsLand web</h1>
-      <h2>for testing</h2>
-    </div>
+    <Routes>
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="creators/:id" element={<CreatorDetail />} />
+        <Route path="gallery" element={<Gallery />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+      <Route path="/auth/:type" element={<Auth />} />
+    
+    </Routes>
   )
 }
 
