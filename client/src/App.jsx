@@ -12,6 +12,9 @@ import CreatorDetail from './pages/CreatorDetail.jsx'
 import Auth from './pages/Auth.jsx'
 import Gallery from './pages/Gallery.jsx'
 import NotFound from './pages/NotFound.jsx'
+import Dashboard from './admin/Dashboard.jsx'
+import User from './admin/User.jsx'
+import Creator from './admin/Creator.jsx'
 
 function App() {
   return (
@@ -26,6 +29,12 @@ function App() {
       </Route>
       <Route path="/auth/:type" element={<Auth />} />
     
+      <Route path="/admin" element={<Dashboard />} />
+      <Route path="/admin/user" element={<User />} />
+      <Route path="/admin/creator" element={<Creator />} />
+      {/* <Route path="/admin/booking" element={ } /> */}
+    
+
     </Routes>
   )
 }
