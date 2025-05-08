@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import creator from './fetchCreators/creatorSlice'
 const store = configureStore({
-  reducer: { creator},
+  reducer: { },
 })
 export default store;

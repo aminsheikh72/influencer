@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { BrowserRouter,Routes, Route } from 'react-router-dom'
 import React from 'react'
 
 // Layout
@@ -15,6 +15,7 @@ import NotFound from './pages/NotFound.jsx'
 
 function App() {
   return (
+<BrowserRouter>
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
@@ -27,6 +28,7 @@ function App() {
       <Route path="/auth/:type" element={<Auth />} />
     
     </Routes>
+    </BrowserRouter>
   )
 }
 
