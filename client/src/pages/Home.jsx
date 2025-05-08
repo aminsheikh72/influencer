@@ -31,7 +31,7 @@ const Home = () => {
                 Showcase your art, connect with fans, and turn your passion into profit.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
-                <Link to="/auth/register" className="btn-primary">
+                <Link to="/register" className="btn-primary">
                   Join Creatosland
                 </Link>
                 <Link to="/gallery" className="btn-outline">
@@ -217,7 +217,7 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="mt-10">
-                  <Link to="/auth/register" className="btn-primary">
+                  <Link to="/register" className="btn-primary">
                     Become a Creator
                   </Link>
                 </div>
