@@ -9,10 +9,8 @@ import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 import CreatorDetail from './pages/CreatorDetail.jsx'
-<<<<<<< Updated upstream
-=======
 import Login from './pages/Login.jsx'
->>>>>>> Stashed changes
+
 import Gallery from './pages/Gallery.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Register from './pages/Register.jsx'
