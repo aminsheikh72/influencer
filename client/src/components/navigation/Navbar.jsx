@@ -50,10 +50,16 @@ const Navbar = () => {
           {/* User Actions */}
           <div className="flex items-center space-x-2 ">
             <Link
-              to="/auth/login"
+              to="/login"
               className="hidden sm:flex btn-outline text-sm rounded-full"
             >
-              Sign In
+              Log In
+            </Link>
+            <Link
+              to="/Register "
+              className="hidden sm:flex btn-outline text-sm rounded-full"
+            >
+              Register
             </Link>
 
             {/* Mobile menu button */}
