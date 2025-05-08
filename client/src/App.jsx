@@ -14,10 +14,13 @@ import Login from './pages/Login.jsx'
 import Gallery from './pages/Gallery.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Register from './pages/Register.jsx'
+import Navbar from './components/navigation/Navbar.jsx'
+import Footer from './components/navigation/Footer.jsx'
 
 function App() {
   return (
 <BrowserRouter>
+<Navbar/>
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
@@ -29,8 +32,8 @@ function App() {
       </Route>
       <Route path="/Login" element={<Login />} />
       <Route path="/Register" element={<Register />} />
-    
     </Routes>
+    <Footer/>
     </BrowserRouter>
   )
 }

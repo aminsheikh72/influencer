@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -49,7 +49,7 @@ const Login = () => {
 
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row bg-black text-white">
+    <div className="min-h-screen  flex flex-col lg:flex-row bg-black text-white">
       {/* Left Side Image Section */}
       <div className="relative w-full lg:w-1/2 hidden lg:flex items-center justify-center">
         <img
@@ -67,7 +67,7 @@ const Login = () => {
       </div>
 
       {/* Right Side Login Section */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 sm:px-12 py-12">
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 mt-20 sm:px-12 py-12">
         <div
           className="w-full max-w-md bg-[#0f0f0f] p-8 rounded-2xl border border-red-600 shadow-lg"
           style={{ boxShadow: '0 0 20px #ff1a1a66' }}
