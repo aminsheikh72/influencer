@@ -9,8 +9,13 @@ import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 import CreatorDetail from './pages/CreatorDetail.jsx'
+<<<<<<< Updated upstream
+=======
+import Login from './pages/Login.jsx'
+>>>>>>> Stashed changes
 import Gallery from './pages/Gallery.jsx'
 import NotFound from './pages/NotFound.jsx'
+import Register from './pages/Register.jsx'
 
 function App() {
   return (
@@ -23,7 +28,8 @@ function App() {
         <Route path="gallery" element={<Gallery />} />
         <Route path="*" element={<NotFound />} />
       </Route>
-      <Route path="/auth/:type" element={<Auth />} />
+      <Route path="/Login" element={<Login />} />
+      <Route path="/Register" element={<Register />} />
     
     </Routes>
   )
