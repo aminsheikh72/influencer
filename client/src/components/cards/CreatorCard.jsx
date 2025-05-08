@@ -1,9 +1,15 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { getCreators } from '../../features/fetchCreators/creatorSlice'
 
 
 const CreatorCard = ({ id, name, username, avatar, cover, followers, category, verified }) => {
+  const dispatch = useDispatch()
+  useEffect(()=>{
+dispatch(getCreators())
+  },[dispatch])
 
   useEffect(() => {
     window.scrollTo(0, 0)
