@@ -31,7 +31,7 @@ const Home = () => {
                 Showcase your art, connect with fans, and turn your passion into profit.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
-                <Link to="/auth/register" className="btn-primary">
+                <Link to="/register" className="btn-primary">
                   Join Creatosland
                 </Link>
                 <Link to="/gallery" className="btn-outline">
@@ -107,33 +107,11 @@ const Home = () => {
           </div>
         </div>
 
-         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          <CreatorCard
-      
-          />
-          <CreatorCard
-        
-          />
-          <CreatorCard
-            id="3"
-            name="Marcus Wei"
-            username="@marcusxr"
-            avatar="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            cover="https://images.pexels.com/photos/6633920/pexels-photo-6633920.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            followers={28700}
-            category="VR Developer"
-            verified={true}
-          />
-          <CreatorCard
-            id="4"
-            name="Sasha Kim"
-            username="@sashacrypto"
-            avatar="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            cover="https://images.pexels.com/photos/6447366/pexels-photo-6447366.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            followers={19300}
-            category="Crypto Artist"
-            verified={true}
-          />
+         <div >
+         
+<CreatorCard/>
+
+
         </div> 
       </section>
 
@@ -239,7 +217,7 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="mt-10">
-                  <Link to="/auth/register" className="btn-primary">
+                  <Link to="/register" className="btn-primary">
                     Become a Creator
                   </Link>
                 </div>
