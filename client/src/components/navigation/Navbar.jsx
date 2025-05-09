@@ -50,6 +50,13 @@ const Navbar = () => {
           {/* User Actions */}
           <div className="flex items-center space-x-2 ">
             <Link
+              to="/admin"
+              className="hidden sm:flex btn-outline text-sm rounded-full"
+            >
+              Admin
+            </Link>
+
+            <Link
               to="/auth/login"
               className="hidden sm:flex btn-outline text-sm rounded-full"
             >
