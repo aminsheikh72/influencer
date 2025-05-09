@@ -49,18 +49,28 @@ const Navbar = () => {
 
           {/* User Actions */}
           <div className="flex items-center space-x-2 ">
-            <Link
+            {/* <Link
+<<<<<<< HEAD
               to="/admin"
               className="hidden sm:flex btn-outline text-sm rounded-full"
             >
               Admin
-            </Link>
+            </Link> */}
 
             <Link
               to="/auth/login"
+// =======
+              // to="/login"
+{/* >>>>>>> e9716cfa57db93857112698faad1dc14114346f5 */}
               className="hidden sm:flex btn-outline text-sm rounded-full"
             >
-              Sign In
+              Log In
+            </Link>
+            <Link
+              to="/Register "
+              className="hidden sm:flex btn-outline text-sm rounded-full"
+            >
+              Register
             </Link>
 
             {/* Mobile menu button */}

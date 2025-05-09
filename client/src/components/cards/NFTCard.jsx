@@ -5,7 +5,7 @@ import React from 'react'
 
 const NFTCard = ({ id, title, creator, creatorAvatar, image, price, likes }) => {
   const [liked, setLiked] = useState(false)
-  const [likeCount, setLikeCount] = useState(likes)
+  const [likeCount, setLikeCount] = useState(liked)
 
   const handleLike = (e) => {
     e.preventDefault()
