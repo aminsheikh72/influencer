@@ -13,9 +13,15 @@ import Login from './pages/Login.jsx'
 
 import Gallery from './pages/Gallery.jsx'
 import NotFound from './pages/NotFound.jsx'
+
+import Dashboard from './admin/Dashboard.jsx'
+import User from './admin/User.jsx'
+import Creator from './admin/Creator.jsx'
+
 import Register from './pages/Register.jsx'
 import Navbar from './components/navigation/Navbar.jsx'
 import Footer from './components/navigation/Footer.jsx'
+
 
 function App() {
   return (
@@ -30,8 +36,19 @@ function App() {
         <Route path="gallery" element={<Gallery />} />
         <Route path="*" element={<NotFound />} />
       </Route>
+
+      <Route path="/auth/:type" element={<Auth />} />
+    
+      <Route path="/admin" element={<Dashboard />} />
+      <Route path="/admin/user" element={<User />} />
+      <Route path="/admin/creator" element={<Creator />} />
+      {/* <Route path="/admin/booking" element={ } /> */}
+    
+
+
       <Route path="/Login" element={<Login />} />
       <Route path="/Register" element={<Register />} />
+
     </Routes>
     <Footer/>
     </BrowserRouter>
