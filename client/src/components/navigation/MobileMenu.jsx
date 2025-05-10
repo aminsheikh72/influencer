@@ -6,9 +6,7 @@ const MobileMenu = ({ setMobileMenuOpen }) => {
   const navItems = [
     { title: 'Home', path: '/' },
     { title: 'About', path: '/about' },
-    { title: 'Programs', path: '/programs' },
     { title: 'Gallery', path: '/gallery' },
-    { title: 'Leaderboard', path: '/leaderboard' },
     { title: 'Contact', path: '/contact' },
   ]
 
@@ -33,13 +31,7 @@ const MobileMenu = ({ setMobileMenuOpen }) => {
           >
             Sign In
           </Link>
-          <Link
-            to="/auth/register"
-            className="block py-3 px-4 mt-3 text-sm font-medium text-center btn-outline w-full"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Join Creatosland
-          </Link>
+        
         </div>
       </div>
     </div>

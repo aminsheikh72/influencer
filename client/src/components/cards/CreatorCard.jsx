@@ -9,7 +9,6 @@ const CreatorCard = () => {
     queryKey: ['influencers'],
     queryFn: fetchInfluencer ,
   })
-  console.log(creators);
   
 
   useEffect(() => {

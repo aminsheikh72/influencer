@@ -19,8 +19,16 @@ createRoot(document.getElementById('root')).render(
          <QueryClientProvider client={queryClient}>
       <App />
       </QueryClientProvider>
+=======
+
+
+
+      <Provider store={store}>
+            <QueryClientProvider client={queryClient}>
+                  <App />
+            </QueryClientProvider>
+>>>>>>> Stashed changes
       </Provider>
-   
-   
+
 
 )
