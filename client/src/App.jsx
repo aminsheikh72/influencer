@@ -1,5 +1,7 @@
 import { BrowserRouter,Routes, Route } from 'react-router-dom'
 import React from 'react'
+  import { ToastContainer } from 'react-toastify';
+
 
 // Layout
 import MainLayout from './layouts/MainLayout.jsx'
@@ -17,6 +19,8 @@ import NotFound from './pages/NotFound.jsx'
 import Dashboard from './admin/Dashboard.jsx'
 import User from './admin/User.jsx'
 import Creator from './admin/Creator.jsx'
+import Booking from './admin/Booking.jsx'
+import Review from './admin/Review.jsx'
 
 import Register from './pages/Register.jsx'
 import Navbar from './components/navigation/Navbar.jsx'
@@ -39,7 +43,8 @@ function App() {
       <Route path="/admin" element={<Dashboard />} />
       <Route path="/admin/user" element={<User />} />
       <Route path="/admin/creator" element={<Creator />} />
-      {/* <Route path="/admin/booking" element={ } /> */}
+      <Route path="/admin/booking" element={<Booking/> } />
+      <Route path="/admin/review" element={<Review/> } />
     
 
 
@@ -48,6 +53,7 @@ function App() {
 
     </Routes>
     <Footer/>
+    <ToastContainer/>
     </BrowserRouter>
   )
 }

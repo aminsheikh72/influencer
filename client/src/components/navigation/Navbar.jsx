@@ -1,38 +1,58 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Logo from '../ui/Logo.jsx'
 import MobileMenu from './MobileMenu.jsx'
 import React from 'react'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+import { logOutUser, } from '../../features/auth/authSlice.js'
 
 const Navbar = () => {
+  const { user } = useSelector(state => state.auth)
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const dropdownRef = useRef(null)
   const location = useLocation()
 
+  const dispatch = useDispatch()
+
+
+  // Handle click outside to close dropdown
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false)
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [dropdownRef])
 
-  const navbarClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-    isScrolled
-      ? 'bg-background-lighter backdrop-blur-lg shadow-md py-2'
-      : 'bg-transparent py-4'
-  }`
+  const handleLogOut = () => {
+    dispatch(logOutUser())
+    toast.success("User Logout", {
+      position: "top-center",
+      theme: "dark"
+    })
+
+
+  }
+
+  const navbarClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+    ? 'bg-background-lighter backdrop-blur-lg shadow-md py-2'
+    : 'bg-transparent py-4'
+    }`
+
+
+
 
   return (
     <nav className={navbarClasses}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
+          {/* Logo Section */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <Logo />
@@ -48,9 +68,21 @@ const Navbar = () => {
           </div>
 
           {/* User Actions */}
+<<<<<<< Updated upstream
           <div className="flex items-center space-x-2 ">
+            {/* <Link
+<<<<<<< HEAD
+              to="/admin"
+              className="hidden sm:flex btn-outline text-sm rounded-full"
+            >
+              Admin
+            </Link> */}
+
             <Link
-              to="/login"
+              to="/auth/login"
+// =======
+              // to="/login"
+{/* >>>>>>> e9716cfa57db93857112698faad1dc14114346f5 */}
               className="hidden sm:flex btn-outline text-sm rounded-full"
             >
               Log In
@@ -61,6 +93,71 @@ const Navbar = () => {
             >
               Register
             </Link>
+=======
+          <div className="flex items-center space-x-2">
+
+
+            {/* Login Button */}
+            {
+              user ? (<>   {/* /* User Profile Dropdown */}
+                <div className="relative" ref={dropdownRef}>
+                  <button
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white hover:bg-primary-dark transition-colors duration-200"
+                    aria-expanded={dropdownOpen}
+                    aria-haspopup="true"
+                  >
+                    <UserIcon className="w-5 h-5" />
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  {dropdownOpen && (
+                    <div className="absolute right-0 mt-2 w-48 bg-background-lighter rounded-md shadow-lg py-1 z-50 border border-accent-muted/20 backdrop-blur-lg">
+                      <div className="px-4 py-3 border-b border-accent-muted/10">
+                        <p className="text-sm text-white capitalize">{user.name}</p>
+                        <p className="text-sm font-medium text-primary truncate ">{user.email}</p>
+                      </div>
+                      <Link to="/profile" className="block px-4 py-2 text-sm text-accent-muted hover:text-white hover:bg-accent-muted/10">
+                        My Profile
+                      </Link>
+
+                      {
+                        user.isAdmin ?
+                          <>
+                          <Link className="block px-4 py-2 text-sm text-accent-muted hover:text-white hover:bg-accent-muted/10">
+                            Admin
+                          </Link></> : <>
+                            <Link className="block px-4 py-2 text-sm text-accent-muted hover:text-white hover:bg-accent-muted/10">
+                              My Bookings
+                            </Link></>
+                      }
+
+
+
+                      <div className="border-t border-accent-muted/10 mt-1"></div>
+
+                      <button
+                        onClick={handleLogOut}
+
+                        className="block w-full text-left px-4 py-2 text-sm text-accent-muted hover:text-white hover:bg-accent-muted/10"
+                      >
+                        LogOut
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </>) : (<>  <Link to={"/login"}>
+                <button
+                  className="btn-outline text-sm rounded-full"
+                >
+                  Login
+                </button>
+              </Link></>)
+            }
+
+
+
+>>>>>>> Stashed changes
 
             {/* Mobile menu button */}
             <button
@@ -82,7 +179,6 @@ const Navbar = () => {
   )
 }
 
-// Navigation Links component
 const NavLinks = ({ location }) => {
   const navItems = [
     { title: 'Home', path: '/' },
@@ -97,9 +193,8 @@ const NavLinks = ({ location }) => {
         <Link
           key={item.path}
           to={item.path}
-          className={`text-md font-black  transition-colors duration-300 hover:text-primary ${
-            location.pathname === item.path ? 'text-primary' : 'text-accent-muted'
-          }`}
+          className={`text-md font-black transition-colors duration-300 hover:text-primary ${location.pathname === item.path ? 'text-primary' : 'text-accent-muted'
+            }`}
         >
           {item.title}
         </Link>
@@ -117,6 +212,12 @@ const MenuIcon = ({ className }) => (
 const XIcon = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className={className}>
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+  </svg>
+)
+
+const UserIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className={className}>
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
   </svg>
 )
 
