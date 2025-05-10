@@ -11,21 +11,12 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient()
 createRoot(document.getElementById('root')).render(
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-  <StrictMode>
-    <BrowserRouter>
+
     
-=======
  
     
    
-      <Provider store={store}>
-         <QueryClientProvider client={queryClient}>
->>>>>>> e9716cfa57db93857112698faad1dc14114346f5
-      <App />
-      </QueryClientProvider>
-=======
+
 
 
 
@@ -33,7 +24,6 @@ createRoot(document.getElementById('root')).render(
             <QueryClientProvider client={queryClient}>
                   <App />
             </QueryClientProvider>
->>>>>>> Stashed changes
       </Provider>
 
 
