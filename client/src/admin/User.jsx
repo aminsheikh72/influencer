@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getUser } from '../features/user/userSlice';
 
 const User = () => {
 
@@ -8,6 +10,17 @@ const User = () => {
     const toggleMobileMenu = () => {
       setMobileMenuOpen(!mobileMenuOpen);
     }
+
+    const {users} = useSelector(state => state.user)
+    console.log(users);
+    
+
+    const dispatch = useDispatch()
+    
+
+    useEffect(() => {
+      dispatch(getUser())
+    },[])
 
 
     return (
@@ -154,23 +167,27 @@ const User = () => {
                     {/* User Cards */}
                     <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                       {/* User Card 1 */}
-                      <div className="card-gradient border border-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-[0_0_15px_rgba(255,0,60,0.7)] transition-all duration-300">
+
+                    {
+                     users.map((user) =>  (
+
+                         <div className="card-gradient border border-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-[0_0_15px_rgba(255,0,60,0.7)] transition-all duration-300">
                         <div className="p-6">
                           <div className="flex items-center">
                             <img className="h-16 w-16 rounded-full border-2 border-[#FF003C]" src="https://randomuser.me/api/portraits/men/1.jpg" alt="User" />
                             <div className="ml-4">
-                              <h3 className="text-lg font-bold text-white">John Smith</h3>
+                              <h3 className="text-lg font-bold text-white">{user.name}</h3>
                               <p className="text-sm text-gray-400">Premium User</p>
                             </div>
                           </div>
                           <div className="mt-4">
                             <div className="flex justify-between text-sm mb-2">
                               <span className="text-gray-400">Email:</span>
-                              <span className="text-white">john.smith@example.com</span>
+                              <span className="text-white">{user.email} </span>
                             </div>
                             <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-400">Joined:</span>
-                              <span className="text-white">Jan 15, 2023</span>
+                              <span className="text-gray-400">Phone:</span>
+                              <span className="text-white">{user.phone}</span>
                             </div>
                             <div className="flex justify-between text-sm mb-2">
                               <span className="text-gray-400">Status:</span>
@@ -181,19 +198,17 @@ const User = () => {
                               <span className="text-white">24</span>
                             </div>
                           </div>
-                          <div className="mt-6 flex space-x-3">
-                            <button className="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
-                              Edit
-                            </button>
-                            <button className="flex-1 bg-[#FF003C] hover:bg-opacity-80 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
-                              View
-                            </button>
-                          </div>
+                          
                         </div>
                       </div>
+                      )                    
+                     
+                      )
+                    }
+
     
                       {/* User Card 2 */}
-                      <div className="card-gradient border border-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-[0_0_15px_rgba(255,0,60,0.7)] transition-all duration-300">
+                      {/* <div className="card-gradient border border-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-[0_0_15px_rgba(255,0,60,0.7)] transition-all duration-300">
                         <div className="p-6">
                           <div className="flex items-center">
                             <img className="h-16 w-16 rounded-full border-2 border-[#FF003C]" src="https://randomuser.me/api/portraits/women/2.jpg" alt="User" />
@@ -229,163 +244,9 @@ const User = () => {
                             </button>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
     
-                      {/* User Card 3 */}
-                      <div className="card-gradient border border-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-[0_0_15px_rgba(255,0,60,0.7)] transition-all duration-300">
-                        <div className="p-6">
-                          <div className="flex items-center">
-                            <img className="h-16 w-16 rounded-full border-2 border-[#FF003C]" src="https://randomuser.me/api/portraits/men/3.jpg" alt="User" />
-                            <div className="ml-4">
-                              <h3 className="text-lg font-bold text-white">Michael Brown</h3>
-                              <p className="text-sm text-gray-400">Premium User</p>
-                            </div>
-                          </div>
-                          <div className="mt-4">
-                            <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-400">Email:</span>
-                              <span className="text-white">michael.b@example.com</span>
-                            </div>
-                            <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-400">Joined:</span>
-                              <span className="text-white">Feb 8, 2023</span>
-                            </div>
-                            <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-400">Status:</span>
-                              <span className="text-green-500">Active</span>
-                            </div>
-                            <div className="flex justify-between text-sm">
-                              <span className="text-gray-400">NFTs Owned:</span>
-                              <span className="text-white">12</span>
-                            </div>
-                          </div>
-                          <div className="mt-6 flex space-x-3">
-                            <button className="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
-                              Edit
-                            </button>
-                            <button className="flex-1 bg-[#FF003C] hover:bg-opacity-80 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
-                              View
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-    
-                      {/* User Card 4 */}
-                      <div className="card-gradient border border-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-[0_0_15px_rgba(255,0,60,0.7)] transition-all duration-300">
-                        <div className="p-6">
-                          <div className="flex items-center">
-                            <img className="h-16 w-16 rounded-full border-2 border-[#FF003C]" src="https://randomuser.me/api/portraits/women/4.jpg" alt="User" />
-                            <div className="ml-4">
-                              <h3 className="text-lg font-bold text-white">Emily Davis</h3>
-                              <p className="text-sm text-gray-400">Standard User</p>
-                            </div>
-                          </div>
-                          <div className="mt-4">
-                            <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-400">Email:</span>
-                              <span className="text-white">emily.d@example.com</span>
-                            </div>
-                            <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-400">Joined:</span>
-                              <span className="text-white">Apr 3, 2023</span>
-                            </div>
-                            <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-400">Status:</span>
-                              <span className="text-yellow-500">Pending</span>
-                            </div>
-                            <div className="flex justify-between text-sm">
-                              <span className="text-gray-400">NFTs Owned:</span>
-                              <span className="text-white">5</span>
-                            </div>
-                          </div>
-                          <div className="mt-6 flex space-x-3">
-                            <button className="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
-                              Edit
-                            </button>
-                            <button className="flex-1 bg-[#FF003C] hover:bg-opacity-80 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
-                              View
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-    
-                      {/* User Card 5 */}
-                      <div className="card-gradient border border-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-[0_0_15px_rgba(255,0,60,0.7)] transition-all duration-300">
-                        <div className="p-6">
-                          <div className="flex items-center">
-                            <img className="h-16 w-16 rounded-full border-2 border-[#FF003C]" src="https://randomuser.me/api/portraits/men/5.jpg" alt="User" />
-                            <div className="ml-4">
-                              <h3 className="text-lg font-bold text-white">David Wilson</h3>
-                              <p className="text-sm text-gray-400">Creator</p>
-                            </div>
-                          </div>
-                          <div className="mt-4">
-                            <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-400">Email:</span>
-                              <span className="text-white">david.w@example.com</span>
-                            </div>
-                            <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-400">Joined:</span>
-                              <span className="text-white">Jan 30, 2023</span>
-                            </div>
-                            <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-400">Status:</span>
-                              <span className="text-green-500">Active</span>
-                            </div>
-                            <div className="flex justify-between text-sm">
-                              <span className="text-gray-400">NFTs Created:</span>
-                              <span className="text-white">31</span>
-                            </div>
-                          </div>
-                          <div className="mt-6 flex space-x-3">
-                            <button className="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
-                              Edit
-                            </button>
-                            <button className="flex-1 bg-[#FF003C] hover:bg-opacity-80 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
-                              View
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-    
-                      {/* User Card 6 */}
-                      <div className="card-gradient border border-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-[0_0_15px_rgba(255,0,60,0.7)] transition-all duration-300">
-                        <div className="p-6">
-                          <div className="flex items-center">
-                            <img className="h-16 w-16 rounded-full border-2 border-[#FF003C]" src="https://randomuser.me/api/portraits/women/6.jpg" alt="User" />
-                            <div className="ml-4">
-                              <h3 className="text-lg font-bold text-white">Jessica Taylor</h3>
-                              <p className="text-sm text-gray-400">Standard User</p>
-                            </div>
-                          </div>
-                          <div className="mt-4">
-                            <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-400">Email:</span>
-                              <span className="text-white">jessica.t@example.com</span>
-                            </div>
-                            <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-400">Joined:</span>
-                              <span className="text-white">May 12, 2023</span>
-                            </div>
-                            <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-400">Status:</span>
-                              <span className="text-red-500">Inactive</span>
-                            </div>
-                            <div className="flex justify-between text-sm">
-                              <span className="text-gray-400">NFTs Owned:</span>
-                              <span className="text-white">3</span>
-                            </div>
-                          </div>
-                          <div className="mt-6 flex space-x-3">
-                            <button className="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
-                              Edit
-                            </button>
-                            <button className="flex-1 bg-[#FF003C] hover:bg-opacity-80 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
-                              View
-                            </button>
-                          </div>
-                        </div>
-                      </div>
+                      
                     </div>
     
                     {/* Pagination */}

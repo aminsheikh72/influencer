@@ -28,18 +28,17 @@ import Footer from './components/navigation/Footer.jsx'
 function App() {
   return (
 <BrowserRouter>
-<Navbar/>
+{/* <Navbar/> */}
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="creators/:id" element={<CreatorDetail />} />
+        {/* <Route path="creators/:id" element={<CreatorDetail />} /> */}
         <Route path="gallery" element={<Gallery />} />
         <Route path="*" element={<NotFound />} />
       </Route>
 
-      <Route path="/auth/:type" element={<Auth />} />
     
       <Route path="/admin" element={<Dashboard />} />
       <Route path="/admin/user" element={<User />} />
