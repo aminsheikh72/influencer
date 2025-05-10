@@ -13,7 +13,6 @@ const Gallery = () => {
   const [nfts, setNfts] = useState([])
 
   useEffect(() => {
-    // Simulate loading data
     setIsLoading(true)
 
     setTimeout(() => {

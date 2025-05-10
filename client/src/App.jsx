@@ -1,5 +1,7 @@
 import { BrowserRouter,Routes, Route } from 'react-router-dom'
 import React from 'react'
+  import { ToastContainer } from 'react-toastify';
+
 
 // Layout
 import MainLayout from './layouts/MainLayout.jsx'
@@ -54,6 +56,7 @@ function App() {
 
     </Routes>
     <Footer/>
+    <ToastContainer/>
     </BrowserRouter>
   )
 }
