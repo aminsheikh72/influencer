@@ -69,6 +69,28 @@ const Navbar = () => {
           </div>
 
           {/* User Actions */}
+
+          <div className="flex items-center space-x-2 ">
+            {/* <Link
+              to="/admin"
+              className="hidden sm:flex btn-outline text-sm rounded-full"
+            >
+              Admin
+            </Link> */}
+
+            <Link
+              to="/auth/login"
+              className="hidden sm:flex btn-outline text-sm rounded-full"
+            >
+              Log In
+            </Link>
+            <Link
+              to="/Register "
+              className="hidden sm:flex btn-outline text-sm rounded-full"
+            >
+              Register
+            </Link>
+
           <div className="flex items-center space-x-2">
             {!user && (
               <>
@@ -145,6 +167,7 @@ const Navbar = () => {
             </button>
           </div>
         </div>
+      </div>
       </div>
 
       {/* Mobile Menu */}
