@@ -41,7 +41,12 @@ function App() {
         <Route path="gallery" element={<Gallery />} />
         <Route path="*" element={<NotFound />} />
 
+<<<<<<< Updated upstream
       </Route>
+=======
+      {/* <Route path="/auth/:type" element={<Auth />} /> */}
+    
+>>>>>>> Stashed changes
       <Route path="/admin" element={<Dashboard />} />
       <Route path="/admin/user" element={<User />} />
       <Route path="/admin/creator" element={<Creator />} />
