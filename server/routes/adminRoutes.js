@@ -18,6 +18,6 @@ router.delete("/influencer/:id", adminProtect, removeInfluencer);
 router.get("/bookings", adminProtect, getAllBookings);
 router.put("/bookings/:id", adminProtect, updateBooking);
 router.get("/users", getAllUsers);
-router.get("/comments", adminProtect, getAllComments);
+router.get("/comments", getAllComments);
 
 module.exports = router;
