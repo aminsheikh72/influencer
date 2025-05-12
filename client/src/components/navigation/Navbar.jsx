@@ -78,7 +78,7 @@ const Navbar = () => {
               Admin
             </Link> */}
 
-            <Link
+            {/* <Link
               to="/auth/login"
               className="hidden sm:flex btn-outline text-sm rounded-full"
             >
@@ -89,7 +89,7 @@ const Navbar = () => {
               className="hidden sm:flex btn-outline text-sm rounded-full"
             >
               Register
-            </Link>
+            </Link> */}
 
           <div className="flex items-center space-x-2">
             {!user && (
