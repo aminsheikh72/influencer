@@ -1,8 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Users, Home, User, Calendar, LogOut, CheckCircle } from "lucide-react"
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addCreators } from '../features/creator/creatorSlice'
 
 const Creator = () => {
+
+
+
 
   const [creators, setCreators] = useState([
     {
@@ -84,6 +89,15 @@ const Creator = () => {
     return num.toString()
   }
 
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+
+
+
+  },[])
+
+
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setNewCreator({
@@ -106,6 +120,8 @@ const Creator = () => {
       followers: Number.parseInt(newCreator.followers) || 0,
       rate: Number.parseInt(newCreator.rate) || 0,
     }
+
+    dispatch(addCreators(newCreator))    
 
     setCreators([...creators, creatorToAdd])
     setNewCreator({
