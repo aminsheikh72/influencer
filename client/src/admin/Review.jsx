@@ -5,8 +5,8 @@ import { getReviews } from '../features/review/reviewSlice';
 
 const Review = () => {
 
-  // const {reviews , isLoading , isError , message} = useSelector((state)=>  state.review)
-  // console.log(reviews);
+  const {reviews , isLoading , isError , message} = useSelector((state)=>  state.review)
+  console.log(reviews);
   
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -23,74 +23,74 @@ const Review = () => {
   },[])
 
   // Sample reviews data
-  const reviews = [
-    {
-      id: 1,
-      user: {
-        name: 'John Smith',
-        avatar: 'https://randomuser.me/api/portraits/men/1.jpg'
-      },
-      product: 'Cosmic Dreams Collection',
-      rating: 5,
-      date: '2 days ago',
-      content: 'Absolutely amazing collection! The attention to detail in each piece is incredible. I\'ve purchased three NFTs from this collection and they\'re all stunning. The artist\'s vision really comes through in the work.'
-    },
-    {
-      id: 2,
-      user: {
-        name: 'Sarah Johnson',
-        avatar: 'https://randomuser.me/api/portraits/women/2.jpg'
-      },
-      product: 'Abstract Dreams',
-      rating: 4,
-      date: '1 week ago',
-      content: 'I\'m really impressed with the quality of this collection. The animations are smooth and the concept is unique. My only suggestion would be to add more variety in the color schemes. Overall, a great addition to my portfolio!'
-    },
-    {
-      id: 3,
-      user: {
-        name: 'Michael Brown',
-        avatar: 'https://randomuser.me/api/portraits/men/3.jpg'
-      },
-      product: 'Neon Futures',
-      rating: 3,
-      date: '2 weeks ago',
-      content: 'The concept is interesting but the execution could be better. Some of the pieces feel rushed and don\'t have the same level of detail as others in the collection. I appreciate the artist\'s vision but hope to see more consistency in future releases.'
-    },
-    {
-      id: 4,
-      user: {
-        name: 'Emily Davis',
-        avatar: 'https://randomuser.me/api/portraits/women/4.jpg'
-      },
-      product: 'Digital Horizons',
-      rating: 5,
-      date: '3 weeks ago',
-      content: 'This collection exceeded my expectations! The artist has created a truly immersive experience with each piece telling its own story while still maintaining a cohesive theme. The attention to detail is remarkable and the use of color is masterful.'
-    },
-    {
-      id: 5,
-      user: {
-        name: 'David Wilson',
-        avatar: 'https://randomuser.me/api/portraits/men/5.jpg'
-      },
-      product: 'Cyberpunk Dreams',
-      rating: 4,
-      date: '1 month ago',
-      content: 'As a collector of cyberpunk art, I was immediately drawn to this collection. The neon aesthetics and futuristic themes are well executed. Some pieces are more polished than others, but overall it\'s a solid collection that I\'m proud to own.'
-    },
-    {
-      id: 6,
-      user: {
-        name: 'Jessica Taylor',
-        avatar: 'https://randomuser.me/api/portraits/women/6.jpg'
-      },
-      product: 'Ethereal Landscapes',
-      rating: 2,
-      date: '1 month ago',
-      content: 'I was disappointed with this collection. The preview images looked promising, but the actual NFTs lack depth and seem hastily created. The concept had potential but the execution falls short. I expected more given the artist\'s previous work.'
-    }
-  ];
+  // const reviews = [
+  //   {
+  //     id: 1,
+  //     user: {
+  //       name: 'John Smith',
+  //       avatar: 'https://randomuser.me/api/portraits/men/1.jpg'
+  //     },
+  //     product: 'Cosmic Dreams Collection',
+  //     rating: 5,
+  //     date: '2 days ago',
+  //     content: 'Absolutely amazing collection! The attention to detail in each piece is incredible. I\'ve purchased three NFTs from this collection and they\'re all stunning. The artist\'s vision really comes through in the work.'
+  //   },
+  //   {
+  //     id: 2,
+  //     user: {
+  //       name: 'Sarah Johnson',
+  //       avatar: 'https://randomuser.me/api/portraits/women/2.jpg'
+  //     },
+  //     product: 'Abstract Dreams',
+  //     rating: 4,
+  //     date: '1 week ago',
+  //     content: 'I\'m really impressed with the quality of this collection. The animations are smooth and the concept is unique. My only suggestion would be to add more variety in the color schemes. Overall, a great addition to my portfolio!'
+  //   },
+  //   {
+  //     id: 3,
+  //     user: {
+  //       name: 'Michael Brown',
+  //       avatar: 'https://randomuser.me/api/portraits/men/3.jpg'
+  //     },
+  //     product: 'Neon Futures',
+  //     rating: 3,
+  //     date: '2 weeks ago',
+  //     content: 'The concept is interesting but the execution could be better. Some of the pieces feel rushed and don\'t have the same level of detail as others in the collection. I appreciate the artist\'s vision but hope to see more consistency in future releases.'
+  //   },
+  //   {
+  //     id: 4,
+  //     user: {
+  //       name: 'Emily Davis',
+  //       avatar: 'https://randomuser.me/api/portraits/women/4.jpg'
+  //     },
+  //     product: 'Digital Horizons',
+  //     rating: 5,
+  //     date: '3 weeks ago',
+  //     content: 'This collection exceeded my expectations! The artist has created a truly immersive experience with each piece telling its own story while still maintaining a cohesive theme. The attention to detail is remarkable and the use of color is masterful.'
+  //   },
+  //   {
+  //     id: 5,
+  //     user: {
+  //       name: 'David Wilson',
+  //       avatar: 'https://randomuser.me/api/portraits/men/5.jpg'
+  //     },
+  //     product: 'Cyberpunk Dreams',
+  //     rating: 4,
+  //     date: '1 month ago',
+  //     content: 'As a collector of cyberpunk art, I was immediately drawn to this collection. The neon aesthetics and futuristic themes are well executed. Some pieces are more polished than others, but overall it\'s a solid collection that I\'m proud to own.'
+  //   },
+  //   {
+  //     id: 6,
+  //     user: {
+  //       name: 'Jessica Taylor',
+  //       avatar: 'https://randomuser.me/api/portraits/women/6.jpg'
+  //     },
+  //     product: 'Ethereal Landscapes',
+  //     rating: 2,
+  //     date: '1 month ago',
+  //     content: 'I was disappointed with this collection. The preview images looked promising, but the actual NFTs lack depth and seem hastily created. The concept had potential but the execution falls short. I expected more given the artist\'s previous work.'
+  //   }
+  // ];
 
   const filteredReviews = selectedFilter === 'All' 
     ? reviews 
@@ -129,13 +129,13 @@ const Review = () => {
                         </svg>
                         Creators
                       </Link>
-                      <Link to={'/admin/review'} className="flex items-center px-4 py-3 text-gray-300 rounded-md hover:bg-gray-800 group transition-colors duration-200">
+                      <Link to={'/admin/review'} className="flex items-center px-4 py-3 text-gray-300 rounded-md bg-gray-800 group transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-gray-400 group-hover:text-[#FF003C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                         </svg>
                         Reviews
                       </Link> 
-                       <Link to={'/admin/booking'} className="flex items-center px-4 py-3 text-gray-300 rounded-md bg-gray-800 group transition-colors duration-200">
+                       <Link to={'/admin/booking'} className="flex items-center px-4 py-3 text-gray-300 rounded-md hover:bg-gray-800 group transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-gray-400 group-hover:text-[#FF003C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
@@ -154,6 +154,8 @@ const Review = () => {
                 </div>
               </div>
             </div>
+
+
         {/* Mobile menu */}
         <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-gray-900 border-b border-gray-800">
           <div className="flex items-center justify-between h-16 px-4">
@@ -327,8 +329,8 @@ const Review = () => {
                                 <span className="ml-2 text-sm text-gray-400">{review.date}</span>
                               </div>
                             </div>
-                            <p className="text-sm text-gray-400 mt-1">Reviewed: <span className="text-white">{review.product}</span></p>
-                            <p className="mt-3 text-white">{review.content}</p>
+                            {/* <p className="text-sm text-gray-400 mt-1">Reviewed: <span className="text-white">{review.product}</span></p> */}
+                            <p className="mt-3 text-white">{review.text}</p>
                             <div className="mt-4 flex justify-end space-x-3">
                               <button className="bg-gray-800 hover:bg-gray-700 text-white text-sm font-medium py-1 px-3 rounded-md transition-colors duration-200">
                                 Reply

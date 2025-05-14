@@ -17,6 +17,8 @@ const createInfluencer = asyncHandler(async (req, res) => {
     gender,
   } = req.body;
 
+  console.log("req.body", req.body)
+
   if (
     !name ||
     !niche ||
