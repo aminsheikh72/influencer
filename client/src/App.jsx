@@ -37,7 +37,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
-        {/* <Route path="creators/:id" element={<CreatorDetail />} /> */}
+        <Route path="creators/:id" element={<CreatorDetail />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="*" element={<NotFound />} />
 
@@ -54,7 +54,7 @@ function App() {
       <Route path="/Register" element={<Register />} />
 
     </Routes>
-    <Footer/>
+    {/* <Footer/> */}
     <ToastContainer/>
     </BrowserRouter>
   )
