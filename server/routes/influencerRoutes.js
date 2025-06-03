@@ -7,8 +7,13 @@ const {
 
 const router = express.Router();
 
+//  /api/influencer
+
 router.get("/", getInfluencers);
 router.get("/single/:id", getInfluencer);
 router.get("/search", searchInfluencer);
 
 module.exports = router;
+
+
+

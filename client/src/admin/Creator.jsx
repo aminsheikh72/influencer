@@ -1,9 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Users, Home, User, Calendar, LogOut, CheckCircle } from "lucide-react"
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { addCreators, getAllCreators } from '../features/creator/creatorSlice'
 
 const Creator = () => {
 
+  const {allCreators} = useSelector(state => state.creator)
+  console.log(allCreators);
+  
+
+  const dispatch = useDispatch()
+
+
+  useEffect(() => {
+    dispatch(getAllCreators())
+  },[])
+
+  
   const [creators, setCreators] = useState([
     {
       id: 1,
@@ -59,7 +73,7 @@ const Creator = () => {
   const [showAddCreator, setShowAddCreator] = useState(false)
   const [newCreator, setNewCreator] = useState({
     name: "",
-    niche: "",
+    niche: "", 
     followers: "",
     instagram_handle: "",
     rate: "",
@@ -74,7 +88,7 @@ const Creator = () => {
     } else if (num >= 1000) {
       return `$${(num / 1000).toFixed(0)}K`
     }
-    return num.toString()
+    // return num.toString()
   }
 
   const formatFollowers = (num) => {
@@ -83,6 +97,9 @@ const Creator = () => {
     }
     return num.toString()
   }
+
+
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -106,6 +123,10 @@ const Creator = () => {
       followers: Number.parseInt(newCreator.followers) || 0,
       rate: Number.parseInt(newCreator.rate) || 0,
     }
+
+   
+    
+    // dispatch(addCreators(newCreator))
 
     setCreators([...creators, creatorToAdd])
     setNewCreator({
@@ -192,7 +213,7 @@ const Creator = () => {
 
         {/* Creator Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {creators.map((creator) => (
+          {allCreators.map((creator) => (
             <div key={creator.id} className="bg-gray-950 rounded-lg overflow-hidden border border-gray-700">
               {/* Banner Image */}
               <div className="h-32 bg-gradient-to-r from-purple-900 via-blue-800 to-teal-700 relative">
@@ -216,6 +237,7 @@ const Creator = () => {
                 {/* Creator Name */}
                 <div className="absolute bottom-2 left-28">
                   <h2 className="text-xl font-bold">{creator.name}</h2>
+                  <h2 className="text-md font-light">{creator.niche}</h2>
                 </div>
               </div>
               
@@ -235,16 +257,16 @@ const Creator = () => {
                 {/* Stats */}
                 <div className="grid grid-cols-3 gap-2 mb-4">
                   <div className="text-center">
-                    <p className="text-xl font-bold">{creator.nfts}</p>
-                    <p className="text-gray-400 text-sm">NFTs</p>
+                    <p className="text-xl font-bold">{creator.location}</p>
+                    <p className="text-gray-400 text-sm">Location</p>
                   </div>
                   <div className="text-center">
                     <p className="text-xl font-bold">{formatFollowers(creator.followers)}</p>
                     <p className="text-gray-400 text-sm">Followers</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-xl font-bold">{formatNumber(creator.volume)}</p>
-                    <p className="text-gray-400 text-sm">Volume</p>
+                    <p className="text-xl font-bold">{formatNumber(creator.rate)}</p>
+                    <p className="text-gray-400 text-sm">Rate</p>
                   </div>
                 </div>
                 
@@ -311,6 +333,8 @@ const Creator = () => {
                     required
                   />
                 </div>
+
+                
                 
                 <div>
                   <label className="block text-gray-300 mb-1">Followers</label>
@@ -363,7 +387,7 @@ const Creator = () => {
                 <div>
                   <label className="block text-gray-300 mb-1">Profile Picture URL</label>
                   <input
-                    type="text"
+                    type="src"
                     name="profilePic"
                     value={newCreator.profilePic}
                     onChange={handleInputChange}
@@ -382,10 +406,10 @@ const Creator = () => {
                     required
                   >
                     <option value="">Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                    <option value="Prefer not to say">Prefer not to say</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                    {/* <option value="Prefer not to say">Prefer not to say</option> */}
                   </select>
                 </div>
                 

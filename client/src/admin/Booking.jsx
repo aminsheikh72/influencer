@@ -1,7 +1,19 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getAllBookings } from '../features/booking/bookingSlice';
 
 const Booking = () => {
+
+  const {bookings} = useSelector(state => state.booking)
+  
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllBookings())
+  },[])
 
  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -22,86 +34,86 @@ const Booking = () => {
   };
 
   // Sample booking data
-  const bookings = [
-    {
-      id: 'BK-1001',
-      user: {
-        name: 'John Smith',
-        email: 'john.smith@example.com',
-        avatar: 'https://randomuser.me/api/portraits/men/1.jpg'
-      },
-      event: 'NFT Exhibition - Cosmic Dreams',
-      date: '2023-06-15',
-      time: '14:00 - 16:00',
-      status: 'Confirmed',
-      price: '$120.00'
-    },
-    {
-      id: 'BK-1002',
-      user: {
-        name: 'Sarah Johnson',
-        email: 'sarah.j@example.com',
-        avatar: 'https://randomuser.me/api/portraits/women/2.jpg'
-      },
-      event: 'Digital Art Workshop',
-      date: '2023-06-18',
-      time: '10:00 - 13:00',
-      status: 'Pending',
-      price: '$85.00'
-    },
-    {
-      id: 'BK-1003',
-      user: {
-        name: 'Michael Brown',
-        email: 'michael.b@example.com',
-        avatar: 'https://randomuser.me/api/portraits/men/3.jpg'
-      },
-      event: 'Metaverse Tour - New Horizons',
-      date: '2023-06-20',
-      time: '18:00 - 20:00',
-      status: 'Confirmed',
-      price: '$150.00'
-    },
-    {
-      id: 'BK-1004',
-      user: {
-        name: 'Emily Davis',
-        email: 'emily.d@example.com',
-        avatar: 'https://randomuser.me/api/portraits/women/4.jpg'
-      },
-      event: 'NFT Creation Masterclass',
-      date: '2023-06-22',
-      time: '15:00 - 18:00',
-      status: 'Cancelled',
-      price: '$200.00'
-    },
-    {
-      id: 'BK-1005',
-      user: {
-        name: 'David Wilson',
-        email: 'david.w@example.com',
-        avatar: 'https://randomuser.me/api/portraits/men/5.jpg'
-      },
-      event: 'Virtual Gallery Opening',
-      date: '2023-06-25',
-      time: '19:00 - 21:00',
-      status: 'Confirmed',
-      price: '$75.00'
-    },
-    {
-      id: 'BK-1006',
-      user: {
-        name: 'Jessica Taylor',
-        email: 'jessica.t@example.com',
-        avatar: 'https://randomuser.me/api/portraits/women/6.jpg'
-      },
-      event: 'Blockchain Art Symposium',
-      date: '2023-06-28',
-      time: '09:00 - 17:00',
-      status: 'Pending',
-      price: '$250.00'
-    }
-  ];
+  // const bookings = [
+  //   {
+  //     id: 'BK-1001',
+  //     user: {
+  //       name: 'John Smith',
+  //       email: 'john.smith@example.com',
+  //       avatar: 'https://randomuser.me/api/portraits/men/1.jpg'
+  //     },
+  //     event: 'NFT Exhibition - Cosmic Dreams',
+  //     date: '2023-06-15',
+  //     time: '14:00 - 16:00',
+  //     status: 'Confirmed',
+  //     price: '$120.00'
+  //   },
+  //   {
+  //     id: 'BK-1002',
+  //     user: {
+  //       name: 'Sarah Johnson',
+  //       email: 'sarah.j@example.com',
+  //       avatar: 'https://randomuser.me/api/portraits/women/2.jpg'
+  //     },
+  //     event: 'Digital Art Workshop',
+  //     date: '2023-06-18',
+  //     time: '10:00 - 13:00',
+  //     status: 'Pending',
+  //     price: '$85.00'
+  //   },
+  //   {
+  //     id: 'BK-1003',
+  //     user: {
+  //       name: 'Michael Brown',
+  //       email: 'michael.b@example.com',
+  //       avatar: 'https://randomuser.me/api/portraits/men/3.jpg'
+  //     },
+  //     event: 'Metaverse Tour - New Horizons',
+  //     date: '2023-06-20',
+  //     time: '18:00 - 20:00',
+  //     status: 'Confirmed',
+  //     price: '$150.00'
+  //   },
+  //   {
+  //     id: 'BK-1004',
+  //     user: {
+  //       name: 'Emily Davis',
+  //       email: 'emily.d@example.com',
+  //       avatar: 'https://randomuser.me/api/portraits/women/4.jpg'
+  //     },
+  //     event: 'NFT Creation Masterclass',
+  //     date: '2023-06-22',
+  //     time: '15:00 - 18:00',
+  //     status: 'Cancelled',
+  //     price: '$200.00'
+  //   },
+  //   {
+  //     id: 'BK-1005',
+  //     user: {
+  //       name: 'David Wilson',
+  //       email: 'david.w@example.com',
+  //       avatar: 'https://randomuser.me/api/portraits/men/5.jpg'
+  //     },
+  //     event: 'Virtual Gallery Opening',
+  //     date: '2023-06-25',
+  //     time: '19:00 - 21:00',
+  //     status: 'Confirmed',
+  //     price: '$75.00'
+  //   },
+  //   {
+  //     id: 'BK-1006',
+  //     user: {
+  //       name: 'Jessica Taylor',
+  //       email: 'jessica.t@example.com',
+  //       avatar: 'https://randomuser.me/api/portraits/women/6.jpg'
+  //     },
+  //     event: 'Blockchain Art Symposium',
+  //     date: '2023-06-28',
+  //     time: '09:00 - 17:00',
+  //     status: 'Pending',
+  //     price: '$250.00'
+  //   }
+  // ];
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -341,7 +353,7 @@ const Booking = () => {
                           {bookings.map((booking) => (
                             <tr key={booking.id} className="hover:bg-gray-900 transition-colors duration-200">
                               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
-                                {booking.id}
+                                {booking._id}
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="flex items-center">
@@ -358,7 +370,7 @@ const Booking = () => {
                                 {booking.event}
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-white">{booking.date}</div>
+                                <div className="text-sm text-white">{booking.user.createdAt}</div>
                                 <div className="text-sm text-gray-400">{booking.time}</div>
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap">
@@ -367,7 +379,7 @@ const Booking = () => {
                                 </span>
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
-                                {booking.price}
+                                {booking.influencer.rate}
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <button 

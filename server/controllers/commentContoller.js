@@ -25,7 +25,7 @@ const addComment = asyncHandler(async (req, res) => {
   if (!comment) {
     res.status(400);
     throw new Error("Comments No Created");
-  }
+  } 
 
   const newComment = await Comment.findById(comment._id).populate("user").populate('booking')
 

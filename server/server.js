@@ -29,7 +29,7 @@ app.use("/api/admin", require("./routes/adminRoutes"));
 // Booking Routes
 app.use("/api/booking", require("./routes/bookingRoutes"));
 
-// Influencer Routes
+// Influencer Routes, 
 app.use("/api/influencers", require("./routes/influencerRoutes"));
 
 // Error Handler

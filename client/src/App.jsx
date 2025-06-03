@@ -31,7 +31,7 @@ function App() {
   return (
 <BrowserRouter>
 {/* <Navbar/> */}
-<Navbar/>
+{/* <Navbar/> */}
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
@@ -42,6 +42,10 @@ function App() {
         <Route path="*" element={<NotFound />} />
 
       </Route>
+
+      {/* <Route path="/auth/:type" element={<Auth />} /> */}
+    
+{/* >>>>>>> Stashed changes */}
       <Route path="/admin" element={<Dashboard />} />
       <Route path="/admin/user" element={<User />} />
       <Route path="/admin/creator" element={<Creator />} />

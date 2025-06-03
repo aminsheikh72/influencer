@@ -10,46 +10,49 @@ import React from 'react'
 
 const About = () => {
   const team = [
+
     {
       name: 'Aman Sheikh',
       role: 'UI Director',
       image: AmanImage,
       bio: 'UI Leader & Frontend Developer. Passionate about crafting intuitive, responsive interfaces with a strong focus on user experience and modern design principles.',
     },
-    
+
     {
       name: 'Amin Sheikh',
       role: 'Logic Director',
       image: AminImage,
       bio: 'Blockchain expert and former lead engineer at a major tech company. Leads the technical infrastructure of Creatosland.',
     },
-    {
-      name: 'Shruti Gaud',
-      role: 'Admin Director',
-      image: shruti ,
-      bio: 'Award-winning digital artist and curator with over 10 years of experience in the NFT space.',
-    },
+
     {
       name: 'Shubham Soni',
       role: 'Assistant of Admin Director',
-      image:  shubham,
+      image: shubham,
       bio: 'Community builder and strategist who has helped launch several successful creator platforms.',
     },
-
     {
       name: 'Samruddhi Kadam',
       role: 'Authentication Director',
-      image:  samm,
+      image: samm,
       bio: 'Community builder and strategist who has helped launch several successful creator platforms.',
     },
     {
       name: 'Swati Kushwaha',
       role: 'Management  Director',
-      image:  Swati,
+      image: Swati,
       bio: 'Community builder and strategist who has helped launch several successful creator platforms.',
     },
+    {
+      name: 'Shruti Gaud',
+      role: 'Admin Director',
+      image: shruti,
+      bio: 'Award-winning digital artist and curator with over 10 years of experience in the NFT space.',
+    },
+
+
   ]
-  
+
   const milestones = [
     {
       year: '2023',
@@ -82,7 +85,7 @@ const About = () => {
           <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/20 rounded-full filter blur-[100px]"></div>
           <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-secondary/20 rounded-full filter blur-[100px]"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-5xl sm:text-6xl font-bold font-display leading-tight text-white">
@@ -94,7 +97,7 @@ const About = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Mission Section */}
       <section className="section">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -112,20 +115,20 @@ const About = () => {
             </div>
             <div className="absolute -z-10 -top-8 -left-8 w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl"></div>
           </div>
-          
+
           <div>
             <h2 className="heading">Our Mission</h2>
             <p className="text-lg text-accent-muted mb-6">
-              Creatosland exists to empower the next generation of digital creators with the tools, 
+              Creatosland exists to empower the next generation of digital creators with the tools,
               community, and marketplace they need to thrive in the new creative economy.
             </p>
             <p className="text-lg text-accent-muted mb-6">
-              We believe that creators should have complete ownership of their work and direct 
-              relationships with their audiences. By leveraging blockchain technology, we're 
-              building a more equitable ecosystem for digital artists, designers, musicians, and 
+              We believe that creators should have complete ownership of their work and direct
+              relationships with their audiences. By leveraging blockchain technology, we're
+              building a more equitable ecosystem for digital artists, designers, musicians, and
               content creators of all kinds.
             </p>
-            
+
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="card bg-primary/10 border border-primary/30 hover:shadow-neon transition-all duration-300">
                 <div className="flex items-center space-x-3">
@@ -138,7 +141,7 @@ const About = () => {
                   A world where digital creators can build sustainable careers on their own terms.
                 </p>
               </div>
-              
+
               <div className="card bg-secondary/10 border border-secondary/30 hover:shadow-neon-blue transition-all duration-300">
                 <div className="flex items-center space-x-3">
                   <div className="p-2 bg-secondary/20 rounded-full">
@@ -154,7 +157,7 @@ const About = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Milestones Section */}
       <section className="section">
         <div className="text-center mb-16">
@@ -163,25 +166,24 @@ const About = () => {
             Key milestones in our mission to empower digital creators around the world.
           </p>
         </div>
-        
+
         <div className="relative">
           {/* Timeline line */}
           <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-white/10 z-0"></div>
-          
+
           <div className="relative z-10">
             {milestones.map((milestone, index) => (
-              <div 
+              <div
                 key={index}
-                className={`mb-12 flex items-center ${
-                  index % 2 === 0 
-                    ? 'md:flex-row' 
-                    : 'md:flex-row-reverse'
-                }`}
+                className={`mb-12 flex items-center ${index % 2 === 0
+                  ? 'md:flex-row'
+                  : 'md:flex-row-reverse'
+                  }`}
               >
                 <div className="hidden md:block w-1/2"></div>
-                
+
                 <div className="absolute left-0 md:left-1/2 transform -translate-y-1/2 md:-translate-x-1/2 bg-primary rounded-full w-6 h-6 z-10 shadow-neon"></div>
-                
+
                 <div className="pl-10 md:pl-0 md:w-1/2 md:px-8">
                   <div className="card-glow">
                     <div className="flex items-center mb-3">
@@ -196,7 +198,7 @@ const About = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Team Section */}
       <section className="section">
         <div className="text-center mb-16">
@@ -206,7 +208,7 @@ const About = () => {
             to build the best platform for creators.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {team.map((member, index) => (
             <div key={index} className="card-glow backdrop-blur-lg group">
@@ -224,7 +226,7 @@ const About = () => {
           ))}
         </div>
       </section>
-      
+
       {/* Join Us CTA */}
       <section className="section">
         <div className="card-glow p-8 md:p-12 text-center max-w-3xl mx-auto">

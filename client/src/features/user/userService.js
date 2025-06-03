@@ -8,6 +8,8 @@ const user = async(token) => {
         }
     }
 
+    console.log(options);
+    
     const response = await axios.get("/api/admin/users", options)
     console.log(response.data);
     return response.data

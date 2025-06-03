@@ -92,9 +92,9 @@ const Review = () => {
   //   }
   // ];
 
-  // const filteredReviews = selectedFilter === 'All' 
-  //   ? reviews 
-  //   : reviews.filter(review => review.rating === parseInt(selectedFilter));
+  const filteredReviews = selectedFilter === 'All' 
+    ? reviews 
+    : reviews.filter(review => review.rating === parseInt(selectedFilter));
 
 
 
@@ -129,13 +129,13 @@ const Review = () => {
                         </svg>
                         Creators
                       </Link>
-                      <Link to={'/admin/review'} className="flex items-center px-4 py-3 text-gray-300 rounded-md hover:bg-gray-800 group transition-colors duration-200">
+                      <Link to={'/admin/review'} className="flex items-center px-4 py-3 text-gray-300 rounded-md bg-gray-800 group transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-gray-400 group-hover:text-[#FF003C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                         </svg>
                         Reviews
                       </Link> 
-                       <Link to={'/admin/booking'} className="flex items-center px-4 py-3 text-gray-300 rounded-md bg-gray-800 group transition-colors duration-200">
+                       <Link to={'/admin/booking'} className="flex items-center px-4 py-3 text-gray-300 rounded-md hover:bg-gray-800 group transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-gray-400 group-hover:text-[#FF003C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
@@ -154,6 +154,8 @@ const Review = () => {
                 </div>
               </div>
             </div>
+
+
         {/* Mobile menu */}
         <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-gray-900 border-b border-gray-800">
           <div className="flex items-center justify-between h-16 px-4">
@@ -301,7 +303,7 @@ const Review = () => {
                 </div>
 
                 {/* Reviews List */}
-                {/* <div className="mt-8 space-y-6">
+                <div className="mt-8 space-y-6">
                   {filteredReviews.map((review) => (
                     <div key={review.id} className="card-gradient border border-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-[0_0_15px_rgba(255,0,60,0.7)] transition-all duration-300">
                       <div className="p-6">
@@ -327,8 +329,8 @@ const Review = () => {
                                 <span className="ml-2 text-sm text-gray-400">{review.date}</span>
                               </div>
                             </div>
-                            <p className="text-sm text-gray-400 mt-1">Reviewed: <span className="text-white">{review.product}</span></p>
-                            <p className="mt-3 text-white">{review.content}</p>
+                            {/* <p className="text-sm text-gray-400 mt-1">Reviewed: <span className="text-white">{review.product}</span></p> */}
+                            <p className="mt-3 text-white">{review.text}</p>
                             <div className="mt-4 flex justify-end space-x-3">
                               <button className="bg-gray-800 hover:bg-gray-700 text-white text-sm font-medium py-1 px-3 rounded-md transition-colors duration-200">
                                 Reply
@@ -342,7 +344,7 @@ const Review = () => {
                       </div>
                     </div>
                   ))}
-                </div> */}
+                </div>
 
                 {/* Pagination */}
                 <div className="mt-8 flex justify-between items-center">
