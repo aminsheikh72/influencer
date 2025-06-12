@@ -2,12 +2,16 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAllBookings } from '../features/booking/bookingSlice';
+import { getAllBookings, updateBookingDetails } from '../features/booking/bookingSlice';
 
 const Booking = () => {
 
   const {bookings} = useSelector(state => state.booking)
   
+  
+
+ 
+ 
 
   const dispatch = useDispatch()
 
@@ -32,88 +36,14 @@ const Booking = () => {
     setShowUpdateModal(false);
     setSelectedBooking(null);
   };
+  
+  const handleupdateBooking = ()=> {
+    upda
+  }
 
-  // Sample booking data
-  // const bookings = [
-  //   {
-  //     id: 'BK-1001',
-  //     user: {
-  //       name: 'John Smith',
-  //       email: 'john.smith@example.com',
-  //       avatar: 'https://randomuser.me/api/portraits/men/1.jpg'
-  //     },
-  //     event: 'NFT Exhibition - Cosmic Dreams',
-  //     date: '2023-06-15',
-  //     time: '14:00 - 16:00',
-  //     status: 'Confirmed',
-  //     price: '$120.00'
-  //   },
-  //   {
-  //     id: 'BK-1002',
-  //     user: {
-  //       name: 'Sarah Johnson',
-  //       email: 'sarah.j@example.com',
-  //       avatar: 'https://randomuser.me/api/portraits/women/2.jpg'
-  //     },
-  //     event: 'Digital Art Workshop',
-  //     date: '2023-06-18',
-  //     time: '10:00 - 13:00',
-  //     status: 'Pending',
-  //     price: '$85.00'
-  //   },
-  //   {
-  //     id: 'BK-1003',
-  //     user: {
-  //       name: 'Michael Brown',
-  //       email: 'michael.b@example.com',
-  //       avatar: 'https://randomuser.me/api/portraits/men/3.jpg'
-  //     },
-  //     event: 'Metaverse Tour - New Horizons',
-  //     date: '2023-06-20',
-  //     time: '18:00 - 20:00',
-  //     status: 'Confirmed',
-  //     price: '$150.00'
-  //   },
-  //   {
-  //     id: 'BK-1004',
-  //     user: {
-  //       name: 'Emily Davis',
-  //       email: 'emily.d@example.com',
-  //       avatar: 'https://randomuser.me/api/portraits/women/4.jpg'
-  //     },
-  //     event: 'NFT Creation Masterclass',
-  //     date: '2023-06-22',
-  //     time: '15:00 - 18:00',
-  //     status: 'Cancelled',
-  //     price: '$200.00'
-  //   },
-  //   {
-  //     id: 'BK-1005',
-  //     user: {
-  //       name: 'David Wilson',
-  //       email: 'david.w@example.com',
-  //       avatar: 'https://randomuser.me/api/portraits/men/5.jpg'
-  //     },
-  //     event: 'Virtual Gallery Opening',
-  //     date: '2023-06-25',
-  //     time: '19:00 - 21:00',
-  //     status: 'Confirmed',
-  //     price: '$75.00'
-  //   },
-  //   {
-  //     id: 'BK-1006',
-  //     user: {
-  //       name: 'Jessica Taylor',
-  //       email: 'jessica.t@example.com',
-  //       avatar: 'https://randomuser.me/api/portraits/women/6.jpg'
-  //     },
-  //     event: 'Blockchain Art Symposium',
-  //     date: '2023-06-28',
-  //     time: '09:00 - 17:00',
-  //     status: 'Pending',
-  //     price: '$250.00'
-  //   }
-  // ];
+
+
+  
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -385,6 +315,7 @@ const Booking = () => {
                                 <button 
                                   onClick={() => openUpdateModal(booking)}
                                   className="text-[#FF003C] hover:text-[#FF003C] hover:underline mr-4"
+                                 
                                 >
                                   Update
                                 </button>
@@ -534,7 +465,8 @@ const Booking = () => {
                 <button
                   type="button"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-[#FF003C] text-base font-medium text-white hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF003C] sm:ml-3 sm:w-auto sm:text-sm hover:shadow-[0_0_15px_rgba(255,0,60,0.7)]"
-                  onClick={closeUpdateModal}
+                 
+                  onClick={handleupdateBooking}
                 >
                   Update
                 </button>
