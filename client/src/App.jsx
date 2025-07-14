@@ -31,7 +31,7 @@ function App() {
   return (
 <BrowserRouter>
 {/* <Navbar/> */}
-{/* <Navbar/> */}
+<Navbar/>
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />

@@ -132,9 +132,9 @@ const Booking = () => {
 
   return (
     <div className="font-sans" style={{ backgroundColor: '#000000', color: '#FFFFFF' }}>
-      <div className="flex h-screen overflow-hidden">
+      <div className="flex h-screen my-10 overflow-hidden">
         {/* Sidebar */}
-       <div className="hidden md:flex md:flex-shrink-0">
+       <div className="hidden my-10 md:flex md:flex-shrink-0">
               <div className="flex flex-col w-64 border-r border-gray-800">
                 <div className="flex flex-col h-0 flex-1">
                   <div className="flex items-center h-16 flex-shrink-0 px-4 bg-gray-900">
