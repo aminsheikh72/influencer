@@ -1,6 +1,6 @@
 import axios from "axios"
  export const fetchInfluencer=async()=>{
-    const res = await axios.get('/api/influencers')
+    const res = await axios.get('https://influencer-backend-e6se.onrender.com/api/influencers')
     return res.data
     
 }

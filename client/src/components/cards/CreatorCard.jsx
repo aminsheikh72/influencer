@@ -27,13 +27,13 @@ const CreatorCard = () => {
   return (
     <div  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full" >
       {creators?.map((creator) => (
-        <Link to={`/creators/${creator._id}`} key={creator._id} className="block">
+        <Link to={`/creators/${creator?._id}`} key={creator?._id} className="block">
           <div className="card-glow h-full group w-full">
             {/* Cover image */}
             <div className="h-32 rounded-t-lg overflow-hidden -mx-6 -mt-6">
               <img
-                src={creator.cover || creator.profilePic}
-                alt={`${creator.name}'s cover`}
+                src={creator?.cover || creator?.profilePic}
+                alt={`${creator?.name}'s cover`}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
@@ -43,12 +43,12 @@ const CreatorCard = () => {
               <div className="relative">
                 <div className="w-20 h-20 rounded-full border-4 border-background-card overflow-hidden">
                   <img
-                    src={creator.profilePic}
-                    alt={creator.name}
+                    src={creator?.profilePic}
+                    alt={creator?.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                {creator.verified && (
+                {creator?.verified && (
                   <div className="absolute bottom-0 right-0 bg-primary rounded-full p-1 border-2 border-background-card">
                     <CheckIcon className="w-3 h-3 text-white" />
                   </div>
@@ -58,10 +58,10 @@ const CreatorCard = () => {
 
             {/* Info */}
             <div className="mt-4 text-center">
-              <h3 className="font-bold text-white group-hover:text-primary transition-colors">{creator.name}</h3>
-              <p className="text-accent-muted text-sm">@{creator.instagram_handle}</p>
+              <h3 className="font-bold text-white group-hover:text-primary transition-colors">{creator?.name}</h3>
+              <p className="text-accent-muted text-sm">@{creator?.instagram_handle}</p>
               <div className="inline-block px-3 py-1 bg-background-lighter rounded-full text-xs font-medium mt-2">
-                {creator.niche}
+                {creator?.niche}
               </div>
             </div>
 
@@ -70,7 +70,7 @@ const CreatorCard = () => {
               <div className="flex justify-between items-center">
                 <div>
                   <p className="text-xs text-accent-muted">Followers</p>
-                  <p className="font-medium text-white">{formatFollowers(creator.followers)}</p>
+                  <p className="font-medium text-white">{formatFollowers(creator?.followers)}</p>
                 </div>
                 <button className="btn-outline !py-1.5 !px-4 text-xs">
                   Follow
