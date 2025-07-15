@@ -126,13 +126,6 @@ const Navbar = () => {
                         {user.email}
                       </p>
                     </div>
-                    <Link
-                      to="/profile"
-                      className="block px-4 py-2 text-sm text-accent-muted hover:text-white hover:bg-accent-muted/10"
-                    >
-                      My Profile
-                    </Link>
-                    
                     {user.isAdmin ? (
                     <>
                         <Link
