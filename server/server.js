@@ -14,7 +14,7 @@ connectDB();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://move-it-aminsheikh72s-projects.vercel.app",
+  "https://influencer-three.vercel.app",
 ];
 
 app.use(cors({
