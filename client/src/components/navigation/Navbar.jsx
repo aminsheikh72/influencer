@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Logo from '../ui/Logo';
@@ -14,6 +14,7 @@ const Navbar = () => {
   const dropdownRef = useRef(null);
   const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   // Handle scroll effect
   useEffect(() => {
@@ -41,6 +42,7 @@ const Navbar = () => {
       position: 'top-center',
       theme: 'dark',
     });
+    navigate("/")
   };
 
   const navbarClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -130,20 +132,32 @@ const Navbar = () => {
                     >
                       My Profile
                     </Link>
+                    
                     {user.isAdmin ? (
-                      <Link
+                    <>
+                        <Link
                         to="/admin"
                         className="block px-4 py-2 text-sm text-accent-muted hover:text-white hover:bg-accent-muted/10"
                       >
                         Admin
                       </Link>
-                    ) : (
-                      <Link
-                        to="/bookings"
+                        <Link
+                        to="/my-bookings"
                         className="block px-4 py-2 text-sm text-accent-muted hover:text-white hover:bg-accent-muted/10"
                       >
                         My Bookings
                       </Link>
+                    </>
+                    ) : (
+                    <>
+                       
+                        <Link
+                        to="/my-bookings"
+                        className="block px-4 py-2 text-sm text-accent-muted hover:text-white hover:bg-accent-muted/10"
+                      >
+                        My Bookings
+                      </Link>
+                    </>
                     )}
                     <div className="border-t border-accent-muted/10 mt-1"></div>
                     <button
@@ -180,7 +194,6 @@ const NavLinks = ({ location }) => {
   const navItems = [
     { title: 'Home', path: '/' },
     { title: 'About', path: '/about' },
-    { title: 'Gallery', path: '/gallery' },
     { title: 'Contact', path: '/contact' },
   ];
 

@@ -12,7 +12,7 @@ const adminProtect = require("../middleware/adminMiddleware");
 
 const router = express.Router();
 
-router.post("/influencer", createInfluencer);
+router.post("/influencer",adminProtect, createInfluencer);
 router.put("/influencer/:id", adminProtect, updateInfluencer);
 router.delete("/influencer/:id", adminProtect, removeInfluencer);
 router.get("/bookings", adminProtect, getAllBookings);

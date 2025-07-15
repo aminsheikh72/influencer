@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
-import fetchInfluencer from '../../services/influencerService'
+import { fetchInfluencer } from './../../services/influencerService';
 
 const CreatorCard = () => {
   const { data: creators = [], isLoading, isError, error } = useQuery({

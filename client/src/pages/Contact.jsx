@@ -116,9 +116,7 @@ const Contact = () => {
                 <div>
                   <h3 className="font-medium text-white">Our Location</h3>
                   <p className="text-accent-muted mt-1">
-                    123 Metaverse Avenue<br />
-                    San Francisco, CA 94103<br />
-                    United States
+                    192 palasia, indore (M.P)
                   </p>
                 </div>
               </div>
@@ -130,8 +128,7 @@ const Contact = () => {
                 <div>
                   <h3 className="font-medium text-white">Email Us</h3>
                   <p className="text-accent-muted mt-1">
-                    support@creatosland.com<br />
-                    partnerships@creatosland.com
+                    aminsheikh9065@gmail.com
                   </p>
                 </div>
               </div>
@@ -143,54 +140,12 @@ const Contact = () => {
                 <div>
                   <h3 className="font-medium text-white">Call Us</h3>
                   <p className="text-accent-muted mt-1">
-                    +1 (555) 123-4567<br />
-                    Monday-Friday, 9AM-6PM PST
+                    9329394737
                   </p>
                 </div>
               </div>
               
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 p-3 bg-primary/20 rounded-full">
-                  <SocialIcon className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-white">Connect With Us</h3>
-                  <div className="flex space-x-4 mt-3">
-                    <a
-                      href="#"
-                      className="p-2 bg-background-lighter rounded-full hover:bg-primary/20 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <TwitterIcon className="w-5 h-5 text-accent-muted hover:text-primary transition-colors" />
-                    </a>
-                    <a
-                      href="#"
-                      className="p-2 bg-background-lighter rounded-full hover:bg-primary/20 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <InstagramIcon className="w-5 h-5 text-accent-muted hover:text-primary transition-colors" />
-                    </a>
-                    <a
-                      href="#"
-                      className="p-2 bg-background-lighter rounded-full hover:bg-primary/20 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <DiscordIcon className="w-5 h-5 text-accent-muted hover:text-primary transition-colors" />
-                    </a>
-                    <a
-                      href="#"
-                      className="p-2 bg-background-lighter rounded-full hover:bg-primary/20 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <LinkedInIcon className="w-5 h-5 text-accent-muted hover:text-primary transition-colors" />
-                    </a>
-                  </div>
-                </div>
-              </div>
+             
             </div>
           </div>
           

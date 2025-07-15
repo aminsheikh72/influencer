@@ -43,11 +43,7 @@ export default userSlice.reducer
 
 
 export const getUser = createAsyncThunk("GET/USER", async(_, thunkAPI) => {
-
     let token = thunkAPI.getState().auth.user.token
-    console.log(token);
-    
-
     try {
         return userService.user(token)
     } catch (error) {

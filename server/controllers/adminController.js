@@ -17,8 +17,6 @@ const createInfluencer = asyncHandler(async (req, res) => {
     gender,
   } = req.body;
 
-  console.log("req.body", req.body)
-
   if (
     !name ||
     !niche ||
@@ -104,14 +102,15 @@ const updateBooking = asyncHandler(async (req, res) => {
   ).populate('user').populate('influencer')
 
   if (req.body.status === "rejected") {
-    // Update Influencer Status
     await Influencer.findByIdAndUpdate(updatedBooking.influencer._id, { isActive: true })
   }
-
-
-
-
-
+   if (req.body.status === "accepted") {
+   
+    await Influencer.findByIdAndUpdate(updatedBooking.influencer._id, { isActive: false })
+  }
+   if (req.body.status === "completed") {
+    await Influencer.findByIdAndUpdate(updatedBooking.influencer._id, { isActive: true })
+  }
 
   if (!updatedBooking) {
     res.status(400);

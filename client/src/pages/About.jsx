@@ -227,26 +227,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Join Us CTA */}
-      <section className="section">
-        <div className="card-glow p-8 md:p-12 text-center max-w-3xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold font-display text-white mb-6">
-            Ready to Join the Creatosland Community?
-          </h2>
-          <p className="text-accent-muted mb-8">
-            Whether you're a creator looking to share your work or a collector interested in digital art,
-            there's a place for you in our ecosystem.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link to="/auth/register" className="btn-primary">
-              Create an Account
-            </Link>
-            <Link to="/contact" className="btn-outline">
-              Contact Us
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

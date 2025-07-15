@@ -19,16 +19,15 @@ const Footer = () => {
     {
       title: 'Programs',
       links: [
-        { name: 'Beginner', href: '/programs' },
-        { name: 'Pro', href: '/programs' },
-        { name: 'Elite', href: '/programs' },
+        { name: 'Beginner', href: '#' },
+        { name: 'Pro', href: '#' },
+        { name: 'Elite', href: '#' },
         { name: 'Enterprise', href: '#' },
       ],
     },
     {
       title: 'Resources',
       links: [
-        { name: 'Gallery', href: '/gallery' },
         { name: 'Documentation', href: '/about' },
         { name: 'Tutorials', href: '#' },
       ],
@@ -45,10 +44,9 @@ const Footer = () => {
   ]
   
   const socialLinks = [
-    { name: 'Twitter', href: '#', icon: TwitterIcon },
-    { name: 'Instagram', href: '#', icon: InstagramIcon },
-    { name: 'Discord', href: '#', icon: DiscordIcon },
-    { name: 'YouTube', href: '#', icon: YouTubeIcon },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/amin-sheikh-1a885a328', icon: LinkedInIcon },
+    { name: 'Instagram', href: 'https://www.instagram.com/vlogstack?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==', icon: InstagramIcon },
+    { name: 'YouTube', href: 'https://youtube.com/shorts/xp5_UMmABms?si=-8FFoT9LDycoam8R', icon: YouTubeIcon },
   ]
 
   return (
@@ -121,11 +119,7 @@ const Footer = () => {
 }
 
 // Social icons
-const TwitterIcon = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className={className}>
-    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 9.99 9.99 0 01-3.127 1.195 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-  </svg>
-)
+
 
 const InstagramIcon = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className={className}>
@@ -133,11 +127,19 @@ const InstagramIcon = ({ className }) => (
   </svg>
 )
 
-const DiscordIcon = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className={className}>
-    <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.39-.441.883-.608 1.282a18.301 18.301 0 00-5.487 0c-.168-.399-.399-.892-.608-1.282a.077.077 0 00-.079-.037 19.736 19.736 0 00-4.885 1.515.07.07 0 00-.032.028C.533 9.046-.32 13.58.099 18.057a.083.083 0 00.031.056 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.372.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.029zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+const LinkedInIcon = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+    className={className}
+  >
+    <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 19h-2.5v-9h2.5v9zm-1.25-10.27c-.83 0-1.5-.67-1.5-1.5s.68-1.5 1.5-1.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5zm13 10.27h-2.5v-4.75c0-1.14-.41-1.92-1.45-1.92-.79 0-1.27.53-1.48 1.04-.07.17-.08.41-.08.65v5h-2.5s.03-8.13 0-9h2.5v1.28c.33-.51.93-1.23 2.27-1.23 1.66 0 2.9 1.08 2.9 3.41v5.54z"/>
   </svg>
-)
+);
+
+
+
 
 const YouTubeIcon = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className={className}>

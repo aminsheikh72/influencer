@@ -1,209 +1,187 @@
-import React, { useEffect, useState } from 'react'
-import { Users, Home, User, Calendar, LogOut, CheckCircle } from "lucide-react"
-import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { addCreators, getAllCreators } from '../features/creator/creatorSlice'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addCreators,
+  getAllCreators,
+  removeCreator,
+  updateCreator,
+} from "../features/creator/creatorSlice";
+import { toast } from "react-toastify";
+import Loading from "../components/loaders/Loading";
+import { Link } from "react-router-dom";
 
 const Creator = () => {
+  const { allCreators, isSuccess, isError, message, isLoading } = useSelector(
+    (state) => state.creator
+  );
+  const dispatch = useDispatch();
+  const [showAddCreator, setShowAddCreator] = useState(false);
+  const [showUpdateCreator, setShowUpdateCreator] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [selectedCreator, setSelectedCreator] = useState(null);
 
-  const {allCreators} = useSelector(state => state.creator)
-  console.log(allCreators);
-  
+  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
-  const dispatch = useDispatch()
-
-
-  useEffect(() => {
-    dispatch(getAllCreators())
-  },[])
-
-  
-  const [creators, setCreators] = useState([
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      username: "@sarahcreates",
-      description: "Digital artist specializing in abstract and futuristic art pieces.",
-      niche: "Digital Art",
-      followers: 15200,
-      nfts: 247,
-      volume: 1200000,
-      instagram_handle: "@sarahcreates",
-      rate: 2500,
-      location: "New York, USA",
-      profilePic: "/placeholder.svg?height=100&width=100",
-      bannerPic: "/placeholder.svg?height=200&width=600",
-      gender: "Female",
-      verified: true,
-    },
-    {
-      id: 2,
-      name: "David Wilson",
-      username: "@daveart",
-      niche: "Sculpture",
-      followers: 9700,
-      nfts: 183,
-      volume: 845000,
-      instagram_handle: "@daveart",
-      rate: 3000,
-      location: "London, UK",
-      profilePic: "/placeholder.svg?height=100&width=100",
-      bannerPic: "/placeholder.svg?height=200&width=600",
-      gender: "Male",
-      verified: true,
-    },
-    {
-      id: 3,
-      name: "Mia Chen",
-      username: "@miachen",
-      niche: "Photography",
-      followers: 6300,
-      nfts: 92,
-      volume: 520000,
-      instagram_handle: "@miachen",
-      rate: 1800,
-      location: "Tokyo, Japan",
-      profilePic: "/placeholder.svg?height=100&width=100",
-      bannerPic: "/placeholder.svg?height=200&width=600",
-      gender: "Female",
-      verified: true,
-    },
-  ])
-
-  const [showAddCreator, setShowAddCreator] = useState(false)
   const [newCreator, setNewCreator] = useState({
     name: "",
-    niche: "", 
+    niche: "",
     followers: "",
     instagram_handle: "",
     rate: "",
     location: "",
     profilePic: "",
     gender: "",
-  })
+  });
 
   const formatNumber = (num) => {
-    if (num >= 1000000) {
-      return `$${(num / 1000000).toFixed(1)}M`
-    } else if (num >= 1000) {
-      return `$${(num / 1000).toFixed(0)}K`
-    }
-    // return num.toString()
-  }
+    if (num >= 1000000) return `$${(num / 1000000).toFixed(1)}M`;
+    if (num >= 1000) return `$${(num / 1000).toFixed(0)}K`;
+    return `$${num}`;
+  };
 
   const formatFollowers = (num) => {
-    if (num >= 1000) {
-      return `${(num / 1000).toFixed(1)}K`
-    }
-    return num.toString()
-  }
-
-
-
+    if (num >= 1000) return `${(num / 1000).toFixed(1)}K`;
+    return num.toString();
+  };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
     setNewCreator({
       ...newCreator,
-      [name]: value,
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const creatorToAdd = {
-      id: creators.length + 1,
-      username: newCreator.instagram_handle,
-      nfts: Math.floor(Math.random() * 200),
-      volume: Math.floor(Math.random() * 1000000),
-      verified: Math.random() > 0.5,
-      bannerPic: "/placeholder.svg?height=200&width=600",
-      profilePic: newCreator.profilePic || "/placeholder.svg?height=100&width=100",
-      ...newCreator,
-      followers: Number.parseInt(newCreator.followers) || 0,
-      rate: Number.parseInt(newCreator.rate) || 0,
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await dispatch(addCreators(newCreator)).unwrap();
+      toast.success("Influencer added successfully", {
+        position: "top-center",
+      });
+      setShowAddCreator(false);
+      dispatch(getAllCreators());
+    } catch (error) {
+      toast.error(message || "Something went wrong", {
+        position: "top-center",
+      });
     }
-
-   
-    
-    // dispatch(addCreators(newCreator))
-
-    setCreators([...creators, creatorToAdd])
-    setNewCreator({
-      name: "",
-      niche: "",
-      followers: "",
-      instagram_handle: "",
-      rate: "",
-      location: "",
-      profilePic: "",
-      gender: "",
-    })
-    setShowAddCreator(false)
+  };
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      await dispatch(
+        updateCreator({ ...newCreator, _id: selectedCreator._id })
+      ).unwrap();
+      toast.success("Creator updated successfully", { position: "top-center" });
+      setShowUpdateCreator(false);
+      setSelectedCreator(null);
+      setNewCreator({
+        name: "",
+        niche: "",
+        followers: "",
+        instagram_handle: "",
+        rate: "",
+        location: "",
+        profilePic: "",
+        gender: "",
+      });
+      dispatch(getAllCreators());
+    } catch (error) {
+      toast.error("Update failed", { position: "top-center" });
+    }
+  };
+const handleRemove = async (id) => {
+  try {
+    await dispatch(removeCreator(id)).unwrap();  
+    toast.success("Creator removed successfully", { position: "top-center" });
+    dispatch(getAllCreators());
+  } catch (error) {
+    toast.error("Failed to remove creator", { position: "top-center" });
   }
+};
 
 
-  
+  useEffect(() => {
+    dispatch(getAllCreators());
+  }, [dispatch]);
+
+  if (isLoading) return <Loading />;
+ 
+
   return (
-    <div className=" flex my-10 font-sans" style={{ backgroundColor: '#000000', color: '#FFFFFF' }}>
-      {/* Sidebar */}
-        <div className="hidden my-10 md:flex md:flex-shrink-0">
-              <div className="flex flex-col w-64 border-r border-gray-800">
-                <div className="flex flex-col h-0 flex-1">
-                  <div className="flex items-center h-16 flex-shrink-0 px-4 bg-gray-900">
-                    <h1 className="text-xl font-bold text-[#FF003C]">ADMIN PANEL</h1>
-                  </div>
-                  <div className="flex-1 flex flex-col overflow-y-auto">
-                    <nav className="flex-1 px-2 py-4 space-y-2">
-                      <Link to={'/admin'}  className="flex items-center px-4 py-3 text-white hover:bg-gray-800 rounded-md group">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-[#FF003C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                        </svg>
-                        Dashboard
-                      </Link>
-                      <Link to={'/admin/user'} className="flex items-center px-4 py-3 text-gray-300 rounded-md hover:bg-gray-800 group transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-gray-400 group-hover:text-[#FF003C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                        Users
-                      </Link>
-                      <Link to={'/admin/creator'} className="flex items-center px-4 py-3 text-gray-300 rounded-md bg-gray-800 group transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-gray-400 group-hover:text-[#FF003C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                        </svg>
-                        Creators
-                      </Link>
-                      <Link to={'/admin/review'} className="flex items-center px-4 py-3 text-gray-300 rounded-md hover:bg-gray-800 group transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-gray-400 group-hover:text-[#FF003C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        Reviews
-                      </Link> 
-                       <Link to={'/admin/booking'} className="flex items-center px-4 py-3 text-gray-300 rounded-md hover:bg-gray-800 group transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-gray-400 group-hover:text-[#FF003C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                        Bookings
-                      </Link>
-                      <div className="pt-8">
-                        <button className="w-full flex items-center px-4 py-3 text-gray-300 rounded-md hover:bg-gray-800 group transition-colors duration-200">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-gray-400 group-hover:text-[#FF003C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                          </svg>
-                          Sign Out
-                        </button>
-                      </div>
-                    </nav>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div className="flex-1 relative overflow-y-auto pt-16 md:pt-0 ml-0 md:ml-64 mt-5 bg-black text-white">
+      {/* Mobile Navigation */}
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-gray-900 border-b border-gray-800">
+        <div className="flex items-center justify-between h-16 px-4">
+          <Link to={"/"} className="text-xl font-bold text-[#FF003C]">
+            HOME
+          </Link>
+          <button
+            onClick={toggleMobileMenu}
+            className="text-gray-300 hover:text-white"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          className={`${
+            mobileMenuOpen ? "block" : "hidden"
+          } px-2 pt-2 pb-3 space-y-1 bg-gray-900`}
+        >
+          <Link
+            to="/admin"
+            className="block px-3 py-2 rounded-md text-gray-300 bg-gray-800 hover:text-white"
+          >
+            Dashboard
+          </Link>
+          <Link
+            to="/admin/user"
+            className="block px-3 py-2 rounded-md text-gray-300 bg-gray-800 hover:text-white"
+          >
+            Users
+          </Link>
+          <Link
+            to="/admin/creator"
+            className="block px-3 py-2 rounded-md text-white bg-gray-800"
+          >
+            Creators
+          </Link>
+          <Link
+            to="/admin/review"
+            className="block px-3 py-2 rounded-md text-gray-300 bg-gray-800 hover:text-white"
+          >
+            Reviews
+          </Link>
+          <Link
+            to="/admin/booking"
+            className="block px-3 py-2 rounded-md text-gray-300 bg-gray-800 hover:text-white"
+          >
+            Bookings
+          </Link>
+          
+        </div>
+      </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-8">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Creators</h1>
-          <button 
+      <div className="flex-1 p-4 sm:p-6 md:p-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+          <h1 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-0">
+            Creators
+          </h1>
+          <button
             onClick={() => setShowAddCreator(true)}
             className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
           >
@@ -214,220 +192,241 @@ const Creator = () => {
         {/* Creator Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {allCreators.map((creator) => (
-            <div key={creator.id} className="bg-gray-950 rounded-lg overflow-hidden border border-gray-700">
-              {/* Banner Image */}
+            <div
+              key={creator._id}
+              className="bg-gray-950 rounded-lg overflow-hidden border border-gray-700 w-full max-w-sm mx-auto"
+            >
+              {/* Banner Image (optional) */}
               <div className="h-32 bg-gradient-to-r from-purple-900 via-blue-800 to-teal-700 relative">
-                <img 
-                  src={creator.bannerPic || "/placeholder.svg"} 
-                  alt="Creator Banner" 
-                  className="w-full h-full object-cover"
-                />
-                
                 {/* Profile Image */}
                 <div className="absolute -bottom-10 left-4">
-                  <div className={`rounded-full border-4 ${creator.verified ? 'border-red-500' : 'border-gray-700'} overflow-hidden h-20 w-20`}>
-                    <img 
-                      src={creator.profilePic || "/placeholder.svg"} 
-                      alt={creator.name} 
+                  <div className="rounded-full border-4 border-red-500 overflow-hidden h-20 w-20">
+                    <img
+                      src={creator.profilePic}
+                      alt={creator.name}
                       className="w-full h-full object-cover"
                     />
                   </div>
                 </div>
-                
-                {/* Creator Name */}
+                {/* Name and Niche */}
                 <div className="absolute bottom-2 left-28">
-                  <h2 className="text-xl font-bold">{creator.name}</h2>
-                  <h2 className="text-md font-light">{creator.niche}</h2>
+                  <h2 className="text-xl font-bold text-white">
+                    {creator.name}
+                  </h2>
+                  <p className="text-sm text-gray-300">{creator.niche}</p>
                 </div>
               </div>
-              
-              {/* Creator Info */}
+
+              {/* Content Section */}
               <div className="pt-12 px-4 pb-4">
-                <div className="flex items-center mb-2">
-                  <p className="text-gray-400">{creator.username}</p>
-                  {creator.verified && (
-                    <span className="ml-2 bg-red-600 text-white text-xs px-2 py-1 rounded-full">Verified</span>
-                  )}
-                </div>
-                
-                {creator.description && (
-                  <p className="text-gray-300 text-sm mb-4">{creator.description}</p>
-                )}
-                
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-2 mb-4">
-                  <div className="text-center">
-                    <p className="text-xl font-bold">{creator.location}</p>
-                    <p className="text-gray-400 text-sm">Location</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-xl font-bold">{formatFollowers(creator.followers)}</p>
+                <div className="grid grid-cols-3 gap-2 mb-4 text-center">
+                  <div>
+                    <p className="text-lg font-bold">{creator.followers}</p>
                     <p className="text-gray-400 text-sm">Followers</p>
                   </div>
-                  <div className="text-center">
-                    <p className="text-xl font-bold">{formatNumber(creator.rate)}</p>
+                  <div>
+                    <p className="text-lg font-bold">{creator.gender}</p>
+                    <p className="text-gray-400 text-sm">Gender</p>
+                  </div>
+                  <div>
+                    <p className="text-lg font-bold">₹{creator.rate}</p>
                     <p className="text-gray-400 text-sm">Rate</p>
                   </div>
                 </div>
-                
-                {/* Action Buttons */}
-                <div className="flex space-x-2">
-                  <button className="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-md">
-                    Profile
+
+                <div className="grid grid-cols-2 gap-2 text-center mb-4">
+                  <div>
+                    <p className="text-lg font-bold">
+                      {creator.instagram_handle}
+                    </p>
+                    <p className="text-gray-400 text-sm">Instagram</p>
+                  </div>
+                  <div>
+                    <p className="text-lg font-bold">{creator.location}</p>
+                    <p className="text-gray-400 text-sm">Location</p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <button
+                    onClick={() => {
+                      setSelectedCreator(creator);
+                      setNewCreator({
+                        name: creator.name || "",
+                        niche: creator.niche || "",
+                        followers: creator.followers || "",
+                        instagram_handle: creator.instagram_handle || "",
+                        rate: creator.rate || "",
+                        location: creator.location || "",
+                        profilePic: creator.profilePic || "",
+                        gender: creator.gender || "",
+                      });
+                      setShowUpdateCreator(true);
+                    }}
+                    className="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-md"
+                  >
+                    EDIT
                   </button>
-                  <button className="flex-1 bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md">
-                    Follow
+                  <button onClick={()=>handleRemove(creator._id)} className="flex-1 bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md">
+                    REMOVE
                   </button>
                 </div>
-                
-                {/* View Gallery Button (only for first creator) */}
-                {creator.id === 1 && (
-                  <button className="w-full mt-2 bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md">
-                    View Gallery
-                  </button>
-                )}
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Add Creator Modal */}
       {showAddCreator && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="bg-gray-800 rounded-lg p-6 w-full max-w-md">
-            <div className="flex justify-between items-center mb-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 px-4 py-6">
+          <div className="bg-gray-800 rounded-lg w-full max-w-lg max-h-[90vh] overflow-y-auto p-4 sm:p-6">
+            <div className="flex justify-between items-center mb-4 sticky top-0 bg-gray-800 z-10">
               <h2 className="text-xl font-bold">Add New Creator</h2>
-              <button 
+              <button
                 onClick={() => setShowAddCreator(false)}
-                className="text-gray-400 hover:text-white"
+                className="text-gray-400 hover:text-white text-xl"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                ✕
               </button>
             </div>
-            
-            <form onSubmit={handleSubmit}>
-              <div className="space-y-0.1">
-                <div>
-                  <label className="block text-gray-300 mb-1">Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={newCreator.name}
-                    onChange={handleInputChange}
-                    className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white"
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-gray-300 mb-1">Niche</label>
-                  <input
-                    type="text"
-                    name="niche"
-                    value={newCreator.niche}
-                    onChange={handleInputChange}
-                    className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white"
-                    required
-                  />
-                </div>
 
-                
-                
-                <div>
-                  <label className="block text-gray-300 mb-1">Followers</label>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {[
+                "name",
+                "niche",
+                "followers",
+                "instagram_handle",
+                "rate",
+                "location",
+                "profilePic",
+              ].map((field) => (
+                <div key={field}>
+                  <label className="block text-gray-300 mb-1 capitalize">
+                    {field.replace("_", " ")}
+                  </label>
                   <input
-                    type="number"
-                    name="followers"
-                    value={newCreator.followers}
+                    type={
+                      field === "followers" || field === "rate"
+                        ? "number"
+                        : "text"
+                    }
+                    name={field}
+                    value={newCreator[field]}
                     onChange={handleInputChange}
                     className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white"
-                    required
+                    required={field !== "profilePic"}
                   />
                 </div>
-                
-                <div>
-                  <label className="block text-gray-300 mb-1">Instagram Handle</label>
+              ))}
+
+              <div>
+                <label className="block text-gray-300 mb-1">Gender</label>
+                <select
+                  name="gender"
+                  value={newCreator.gender}
+                  onChange={handleInputChange}
+                  className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white"
+                  required
+                >
+                  <option value="">Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div className="flex justify-end gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setShowAddCreator(false)}
+                  className="bg-gray-600 hover:bg-gray-500 text-white py-2 px-4 rounded-md"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-md"
+                >
+                  Add Creator
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {showUpdateCreator && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 px-4 py-6">
+          <div className="bg-gray-800 rounded-lg w-full max-w-lg max-h-[90vh] overflow-y-auto p-4 sm:p-6">
+            <div className="flex justify-between items-center mb-4 sticky top-0 bg-gray-800 z-10">
+              <h2 className="text-xl font-bold">Update Creator</h2>
+              <button
+                onClick={() => setShowUpdateCreator(false)}
+                className="text-gray-400 hover:text-white text-xl"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleUpdate} className="space-y-4">
+              {[
+                "name",
+                "niche",
+                "followers",
+                "instagram_handle",
+                "rate",
+                "location",
+                "profilePic",
+              ].map((field) => (
+                <div key={field}>
+                  <label className="block text-gray-300 mb-1 capitalize">
+                    {field.replace("_", " ")}
+                  </label>
                   <input
-                    type="text"
-                    name="instagram_handle"
-                    value={newCreator.instagram_handle}
+                    type={
+                      field === "followers" || field === "rate"
+                        ? "number"
+                        : "text"
+                    }
+                    name={field}
+                    value={newCreator[field]}
                     onChange={handleInputChange}
                     className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white"
-                    required
+                    required={field !== "profilePic"}
                   />
                 </div>
-                
-                <div>
-                  <label className="block text-gray-300 mb-1">Rate ($)</label>
-                  <input
-                    type="number"
-                    name="rate"
-                    value={newCreator.rate}
-                    onChange={handleInputChange}
-                    className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white"
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-gray-300 mb-1">Location</label>
-                  <input
-                    type="text"
-                    name="location"
-                    value={newCreator.location}
-                    onChange={handleInputChange}
-                    className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white"
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-gray-300 mb-1">Profile Picture URL</label>
-                  <input
-                    type="src"
-                    name="profilePic"
-                    value={newCreator.profilePic}
-                    onChange={handleInputChange}
-                    className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white"
-                    placeholder="/placeholder.svg?height=100&width=100"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-gray-300 mb-1">Gender</label>
-                  <select
-                    name="gender"
-                    value={newCreator.gender}
-                    onChange={handleInputChange}
-                    className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white"
-                    required
-                  >
-                    <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                    {/* <option value="Prefer not to say">Prefer not to say</option> */}
-                  </select>
-                </div>
-                
-                <div className="flex justify-end space-x-2 pt-4">
-                  <button
-                    type="button"
-                    onClick={() => setShowAddCreator(false)}
-                    className="bg-gray-600 hover:bg-gray-500 text-white font-medium py-2 px-4 rounded-md"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md"
-                  >
-                    Add Creator
-                  </button>
-                </div>
+              ))}
+
+              <div>
+                <label className="block text-gray-300 mb-1">Gender</label>
+                <select
+                  name="gender"
+                  value={newCreator.gender}
+                  onChange={handleInputChange}
+                  className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white"
+                  required
+                >
+                  <option value="">Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div className="flex justify-end gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setShowAddCreator(false)}
+                  className="bg-gray-600 hover:bg-gray-500 text-white py-2 px-4 rounded-md"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-md"
+                >
+                  Update Creator
+                </button>
               </div>
             </form>
           </div>
@@ -435,6 +434,6 @@ const Creator = () => {
       )}
     </div>
   );
-}
+};
 
-export default Creator
+export default Creator;

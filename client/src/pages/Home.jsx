@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import CreatorCard from '../components/cards/CreatorCard.jsx'
-import NFTCard from '../components/cards/NFTCard.jsx'
+
 import heroImage from "../assets/heroimage.png"
 import React from 'react'
 
@@ -30,14 +30,7 @@ const Home = () => {
                 Join the next generation of digital creators and build your audience in the metaverse.
                 Showcase your art, connect with fans, and turn your passion into profit.
               </p>
-              <div className="mt-10 flex flex-wrap gap-4">
-                <Link to="/register" className="btn-primary">
-                  Join Creatosland
-                </Link>
-                <Link to="/gallery" className="btn-outline">
-                  Explore Gallery
-                </Link>
-              </div>
+             
 
               <div className="mt-16 flex items-center gap-8">
                 <div>
@@ -100,11 +93,7 @@ const Home = () => {
               Discover the most influential digital artists, designers, and content creators making waves in the metaverse.
             </p>
           </div>
-          <div className="mt-6 md:mt-0">
-            <Link to="/leaderboard" className="btn-outline text-sm">
-              View Leaderboard
-            </Link>
-          </div>
+         
         </div>
 
          <div >
@@ -115,60 +104,7 @@ const Home = () => {
         </div> 
       </section>
 
-      {/* Featured NFTs Section */}
-      <section className="section">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-          <div>
-            <h2 className="heading">Featured Digital Art</h2>
-            <p className="text-accent-muted max-w-2xl">
-              Explore the most exclusive digital art pieces and NFTs created by top talents in Creatosland.
-            </p>
-          </div>
-          <div className="flex space-x-2 mt-6 md:mt-0">
-            <button
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'trending'
-                ? 'bg-primary text-white shadow-neon'
-                : 'bg-background-lighter text-accent-muted hover:text-white'
-                }`}
-              onClick={() => setActiveTab('trending')}
-            >
-              Trending
-            </button>
-            <button
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'recent'
-                ? 'bg-primary text-white shadow-neon'
-                : 'bg-background-lighter text-accent-muted hover:text-white'
-                }`}
-              onClick={() => setActiveTab('recent')}
-            >
-              Recent
-            </button>
-            <button
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'popular'
-                ? 'bg-primary text-white shadow-neon'
-                : 'bg-background-lighter text-accent-muted hover:text-white'
-                }`}
-              onClick={() => setActiveTab('popular')}
-            >
-              Popular
-            </button>
-          </div>
-        </div>
-
-          {/*  Card container */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <NFTCard />
-        
-          {/* <CircleText/> */}
-        </div>
-           {/*  Card container end */}
-
-        <div className="mt-12 text-center">
-          <Link to="/gallery" className="btn-outline">
-            View All Artworks
-          </Link>
-        </div>
-      </section>
+     
 
       {/* Join as Creator CTA */}
       <section className="section">
@@ -216,11 +152,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="mt-10">
-                  <Link to="/register" className="btn-primary">
-                    Become a Creator
-                  </Link>
-                </div>
+             
               </div>
 
               <div className="relative">

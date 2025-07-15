@@ -65,11 +65,11 @@ export default authSlice.reducer;
 export const registerUser = createAsyncThunk(
   "AUTH/REGISTER",
   async (formData, thunkAPI) => {
-    console.log(formData)
+
     try {
       const response = await axios.post("/api/auth/register", formData);
       localStorage.setItem("user", JSON.stringify(response.data));
-      console.log(response.data);
+     
       return await response.data;
     } catch (error) {
       const message = error.response.data.message;

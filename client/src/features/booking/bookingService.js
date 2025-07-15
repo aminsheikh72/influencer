@@ -9,12 +9,29 @@ const allBookings = async(token) => {
     }
 
     const response = await axios.get("/api/admin/bookings", options)
-    console.log(response.data);
+    return response.data
+
+}
+
+const confirmBooking = async(token,formData) => {
+   
+   
+    
+
+    const options  = {
+        headers : {
+            authorization : `Bearer ${token}`
+        }
+    }
+
+    const response = await axios.put(`/api/admin/bookings/${formData.id}`,formData, options)
+    
+    
     return response.data
 
 }
 
 
-const bookingService = { allBookings }
+const bookingService = { allBookings,confirmBooking }
 
 export default bookingService

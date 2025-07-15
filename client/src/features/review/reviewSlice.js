@@ -31,6 +31,23 @@ const  reviewSlice = createSlice({
           state.isError = true
           state.message = action.payload
       })
+      .addCase(addComment.pending , (state , action) => {
+          state.isLoading = true 
+          state.isSuccess =false
+          state.isError = false
+      })
+       .addCase(addComment.fulfilled , (state , action) => {
+          state.isLoading = false 
+          state.isSuccess =true
+          state.reviews = [...state.reviews,action.payload]
+          state.isError = false
+      })
+       .addCase(addComment.rejected , (state , action) => {
+          state.isLoading = false 
+          state.isSuccess =false
+          state.isError = true
+          state.message = action.payload
+      })
    }
 })
 
@@ -40,14 +57,29 @@ export default reviewSlice.reducer
 // get all reviews 
 
 export  const getReviews = createAsyncThunk("GET/REVIEW" , async (_ , thunkAPI)=>{
-
-     let token = thunkAPI.getState().auth.user.token
-    console.log(token);
-    
+     let token = thunkAPI.getState().auth.user.token    
     try {
         return userReview.review(token)
     } catch (error) {
-        console.log(error);
+          const message =
+        error?.response?.data?.message ||
+        error.message ||
+        "Something went wrong";
+      return thunkAPI.rejectWithValue(message);
+        
+    }
+} )
+
+export  const addComment = createAsyncThunk("ADD/COMMENT" , async (formData , thunkAPI)=>{
+     let token = thunkAPI.getState().auth.user.token    
+    try {
+        return userReview.createComment(token,formData)
+    } catch (error) {
+          const message =
+        error?.response?.data?.message ||
+        error.message ||
+        "Something went wrong";
+      return thunkAPI.rejectWithValue(message);
         
     }
 } )
