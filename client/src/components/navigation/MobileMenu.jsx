@@ -6,7 +6,6 @@ const MobileMenu = ({ setMobileMenuOpen }) => {
   const navItems = [
     { title: 'Home', path: '/' },
     { title: 'About', path: '/about' },
-    { title: 'Gallery', path: '/gallery' },
     { title: 'Contact', path: '/contact' },
   ]
 
@@ -25,7 +24,7 @@ const MobileMenu = ({ setMobileMenuOpen }) => {
         ))}
         <div className="pt-4 border-t border-white/10 mt-4">
           <Link
-            to="/auth/login"
+            to="/login"
             className="block py-3 px-4 text-sm font-medium text-center btn-primary w-full"
             onClick={() => setMobileMenuOpen(false)}
           >
