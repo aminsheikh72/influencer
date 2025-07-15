@@ -47,7 +47,11 @@ export const getUser = createAsyncThunk("GET/USER", async(_, thunkAPI) => {
     try {
         return userService.user(token)
     } catch (error) {
-        console.log("error");
+        const message =
+        error?.response?.data?.message ||
+        error.message ||
+        "Something went wrong";
+      return thunkAPI.rejectWithValue(message);
         
     }
 

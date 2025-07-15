@@ -6,7 +6,7 @@ import axios from "axios"
 }
 
 export const fetchInfluencerDetails=async(id)=>{
-    const res = await axios.get('/api/influencers/single/' + id)
+    const res = await axios.get('https://influencer-backend-e6se.onrender.com/api/influencers/single/' + id)
     return res.data   
 }
 
@@ -18,7 +18,7 @@ export const addBooking=async(formData)=>{
             Authorization : `Bearer ${token}`
         }
     }
-    const res = await axios.post(`/api/booking/${formData.influencer}`,formData,options)
+    const res = await axios.post(`https://influencer-backend-e6se.onrender.com/api/booking/${formData.influencer}`,formData,options)
     console.log(res.data);
     
     return res.data   
@@ -31,7 +31,7 @@ export const getMyBookings=async(token)=>{
             Authorization : `Bearer ${token}`
         }
     }
-    const res = await axios.get(`/api/booking`, options)    
+    const res = await axios.get(`https://influencer-backend-e6se.onrender.com/api/booking`, options)    
     return res.data   
 }
 
@@ -42,7 +42,7 @@ export const getMyBooking=async(token,id)=>{
             Authorization : `Bearer ${token}`
         }
     }
-    const res = await axios.get(`/api/booking/${id}`, options)    
+    const res = await axios.get(`https://influencer-backend-e6se.onrender.com/api/booking/${id}`, options)    
     return res.data   
 }
 export const getBookingComments=async(token,id)=>{
@@ -52,7 +52,7 @@ export const getBookingComments=async(token,id)=>{
             Authorization : `Bearer ${token}`
         }
     }
-    const res = await axios.get(`/api/booking/${id}/comment`, options)    
+    const res = await axios.get(`https://influencer-backend-e6se.onrender.com/api/booking/${id}/comment`, options)    
     return res.data   
 }
 
@@ -65,7 +65,7 @@ export const postComment = async ({ user, influencer, text, token }) => {
   };
 
   const res = await axios.post(
-    `/api/booking/${influencer}/comment`,
+    `https://influencer-backend-e6se.onrender.com/api/booking/${influencer}/comment`,
     { user, influencer, text },
     options
   );

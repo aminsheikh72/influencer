@@ -8,7 +8,7 @@ const creator = async (token, newCreator) => {
   };
 
   const response = await axios.post(
-    "/api/admin/influencer",
+    "https://influencer-backend-e6se.onrender.com/api/admin/influencer",
     newCreator,
     options
   );
@@ -23,7 +23,7 @@ const update = async (token, formData) => {
   };
 
   const response = await axios.put(
-    `/api/admin/influencer/${formData._id}`,
+    `https://influencer-backend-e6se.onrender.com/api/admin/influencer/${formData._id}`,
     formData,
     options
   );
@@ -38,7 +38,7 @@ const remove = async (token, id) => {
   };
 
   const response = await axios.delete(
-    `/api/admin/influencer/${id}`,
+    `https://influencer-backend-e6se.onrender.com/api/admin/influencer/${id}`,
     options
   );
   return response.data;
@@ -46,7 +46,7 @@ const remove = async (token, id) => {
 
 
 const getCreators = async () => {
-  const response = await axios.get("/api/influencers");
+  const response = await axios.get("https://influencer-backend-e6se.onrender.com/api/influencers");
   return response.data;
 };
 

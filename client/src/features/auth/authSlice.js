@@ -67,7 +67,7 @@ export const registerUser = createAsyncThunk(
   async (formData, thunkAPI) => {
 
     try {
-      const response = await axios.post("/api/auth/register", formData);
+      const response = await axios.post("https://influencer-backend-e6se.onrender.com/api/auth/register", formData);
       localStorage.setItem("user", JSON.stringify(response.data));
      
       return await response.data;
@@ -82,7 +82,7 @@ export const loginUser = createAsyncThunk(
   "AUTH/LOGIN",
   async (formData, thunkAPI) => {
     try {
-      const response = await axios.post("/api/auth/login", formData);
+      const response = await axios.post("https://influencer-backend-e6se.onrender.com/api/auth/login", formData);
       localStorage.setItem("user", JSON.stringify(response.data));
       return await response.data;
     } catch (error) {

@@ -7,7 +7,7 @@ const review = async(token)=>{
             authorization : `Bearer ${token}`
         }
     }
-    const response = await axios.get("/api/admin/comments" , options)
+    const response = await axios.get("https://influencer-backend-e6se.onrender.com/api/admin/comments" , options)
       return response.data
 }
 
@@ -18,8 +18,7 @@ const createComment = async(token,formData)=>{
             authorization : `Bearer ${token}`
         }
     }
-    const response = await axios.post(`/api/booking/${formData.booking}/comment`,formData , options)
-    console.log(response.data);
+    const response = await axios.post(`https://influencer-backend-e6se.onrender.com/api/booking/${formData.booking}/comment`,formData , options)
     
       return response.data
 }
