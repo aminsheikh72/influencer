@@ -60,7 +60,7 @@ const Navbar = () => {
             <Link to="/" className="flex items-center">
               <Logo />
               <span className="ml-2 text-xl font-bold font-display text-white">
-                Creatos<span className="text-primary">land</span>
+                Creators<span className="text-primary">land</span>
               </span>
             </Link>
           </div>
