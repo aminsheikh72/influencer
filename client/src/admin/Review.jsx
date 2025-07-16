@@ -3,6 +3,7 @@ import { Send } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReviews, addComment } from '../features/review/reviewSlice';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const Reviews = () => {
   const { reviews } = useSelector(state => state.review);
@@ -11,6 +12,8 @@ const Reviews = () => {
 
   const [replyText, setReplyText] = useState({});
   const [replyOpenForBooking, setReplyOpenForBooking] = useState(null);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
   useEffect(() => {
     dispatch(getReviews());
@@ -57,6 +60,69 @@ try {
     <h2 className="text-xl sm:text-2xl font-bold text-white">All Reviews</h2>
     <p className="text-gray-300 text-sm sm:text-base">Manage all customer replies</p>
   </div>
+   <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-gray-900 border-b border-gray-800">
+          <div className="flex items-center justify-between h-16 px-4">
+            <Link to={"/"} className="text-xl font-bold text-[#FF003C]">
+              HOME
+            </Link>
+            <button
+              onClick={toggleMobileMenu}
+              className="text-gray-300 hover:text-white"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            className={`${
+              mobileMenuOpen ? "block" : "hidden"
+            } px-2 pt-2 pb-3 space-y-1 bg-gray-900`}
+          >
+            <Link
+              to="/admin"
+              className="block px-3 py-2 rounded-md text-gray-300 bg-gray-800 hover:text-white"
+            >
+              Dashboard
+            </Link>
+            <Link
+              to="/admin/user"
+              className="block px-3 py-2 rounded-md text-gray-300 bg-gray-800 hover:text-white"
+            >
+              Users
+            </Link>
+            <Link
+              to="/admin/creator"
+              className="block px-3 py-2 rounded-md text-white bg-gray-800"
+            >
+              Creators
+            </Link>
+            <Link
+              to="/admin/review"
+              className="block px-3 py-2 rounded-md text-gray-300 bg-gray-800 hover:text-white"
+            >
+              Reviews
+            </Link>
+            <Link
+              to="/admin/booking"
+              className="block px-3 py-2 rounded-md text-gray-300 bg-gray-800 hover:text-white"
+            >
+              Bookings
+            </Link>
+            
+          </div>
+        </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {Object.entries(groupedComments).map(([bookingId, commentList]) => (

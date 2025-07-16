@@ -24,7 +24,6 @@ const CreatorDetail = () => {
     toast.success("Influencer not Book")
   },
 });
-console.log(creator);
 
 
 const handleBooking = () => {

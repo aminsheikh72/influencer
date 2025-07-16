@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 
 const MobileMenu = ({ setMobileMenuOpen }) => {
+  const {user} = useSelector(state=> state.auth)
   const navItems = [
     { title: 'Home', path: '/' },
     { title: 'About', path: '/about' },
@@ -23,13 +25,16 @@ const MobileMenu = ({ setMobileMenuOpen }) => {
           </Link>
         ))}
         <div className="pt-4 border-t border-white/10 mt-4">
-          <Link
+         {
+          !user ? ( <Link
             to="/login"
             className="block py-3 px-4 text-sm font-medium text-center btn-primary w-full"
             onClick={() => setMobileMenuOpen(false)}
           >
             Sign In
-          </Link>
+          </Link>) : (<>
+          </>)
+         }
         
         </div>
       </div>
